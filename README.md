@@ -10,8 +10,11 @@ dropbox
 ## mac only:
 hammerspoon  
 karabiner
+xcode
+
 
 ## pc only: 
 dexpot  
 launchy  
 github for windows  
+gvim
