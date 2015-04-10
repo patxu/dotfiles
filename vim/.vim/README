@@ -1,0 +1,7 @@
+Author: Patrick Xu
+
+My Vim Setup
+
+Uses pathogen to easily add and remove addons. These addons are found in /bundle.
+
+.vimrc has my configuration for vim. It is sourced by ../.vimrc when vim starts up
