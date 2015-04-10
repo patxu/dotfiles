@@ -3,15 +3,15 @@
 my standard settings for setting up a new system
 
 ## to download:
-chrome
-spotify
-dropbox
+chrome  
+spotify  
+dropbox  
 
-### mac only:
-hammerspoon
+## mac only:
+hammerspoon  
 karabiner
 
-### pc only: 
-dexpot
-launchy
-github for windows
+## pc only: 
+dexpot  
+launchy  
+github for windows  
