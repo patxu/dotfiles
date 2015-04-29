@@ -8,13 +8,14 @@ spotify
 dropbox  
 
 ## mac only:
-hammerspoon  
-karabiner
-xcode
-
+hammerspoon -> init.lua
+karabiner -> private.xml
+seil -> change caps lock to 80
+textwrangler?
+xcode?
 
 ## pc only: 
-dexpot  
-launchy  
+dexpot -> only plugin dexgrid
+launchy
 github for windows  
-gvim
+gvim (no settings file yet)
