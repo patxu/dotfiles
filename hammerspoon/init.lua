@@ -3,6 +3,7 @@
 -----------------------------------------------
 
 local hyper = {"shift", "cmd", "alt", "ctrl"}
+local grid = require "hs.grid"
 
 -----------------------------------------------
 -- hyper h for left one half window
@@ -122,6 +123,7 @@ hs.hotkey.bind(hyper, "e", function()
     f.w = max.w / 2
     f.h = max.h / 2
     win:setFrame(f)
+
 end)
 
 -----------------------------------------------
@@ -175,6 +177,13 @@ hs.hotkey.bind(hyper, "s", function()
     
     win:setFrame(f)
 end)
+
+
+-----------------------------------------------
+-- switch window between screens
+-----------------------------------------------
+
+hs.hotkey.bind(hyper, "w", grid.pushWindowNextScreen)
 
 -----------------------------------------------
 -- Reload config on write
