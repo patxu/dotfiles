@@ -51,7 +51,7 @@ alias ldir="ls -l | grep ’^d’"
 
 #my functions
 function cd(){
-	builtin cd "$*" && ls
+	builtin cd "$*" && ls -a
 }
 
 function cdl(){

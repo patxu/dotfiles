@@ -5,8 +5,7 @@ filetype indent plugin on
 syntax on
 set nocompatible
 
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>
+map <C-n> :NERDTreeToggle<CR>
 set wmh=0
 set winheight=999
 
@@ -35,15 +34,15 @@ au Filetype python setl ts=2 sw=2
 "to remap F12 to bring us past brackets or parentheses so we can close the line
 inoremap <F12> <ESC>%%a
 
-"to make sure that closetag only opens for html files
-autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
-autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
+"for iTerm2 on OSX
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 "to set the color scheme
 "syntax enable
 set background=dark 
 let g:solarized_termtrans=1
-"let g:solarized_termcolors=256
+let g:solarized_termcolors=256
 se t_Co=16
 let g:solarized_contrast="high"
 let g:solarized_visibility="high"
