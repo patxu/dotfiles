@@ -39,5 +39,13 @@ saveDir=bash/
 files=(.bash_profile .bash_aliases .bashrc)
 checkFiles $fileDir $files $saveDir
 
+#bash configs
+echo
+echo Vim config files
+fileDir=~/.vim/
+saveDir=vim/
+files=(.vimrc)
+checkFiles $fileDir $files $saveDir
+
 echo
 echo Done
