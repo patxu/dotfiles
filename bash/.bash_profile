@@ -22,13 +22,9 @@
 
 export PS1='\e[0;31m\@ \W $\e[m '
 
-export HTTP_PROXY='http://gatekeeper.mitre.org:80'
-export HTTPS_PROXY='https://gatekeeper.mitre.org:80'
-export http_proxy='http://gatekeeper.mitre.org:80'
-export https_proxy='https://gatekeeper.mitre.org:80'
-
-export PATH="/Users/pxu/Library/Android/sdk/platform-tools:$PATH"
-
-source ~/.bashrc
+#export HTTP_PROXY='http://gatekeeper.mitre.org:80'
+#export HTTPS_PROXY='https://gatekeeper.mitre.org:80'
+#export http_proxy='http://gatekeeper.mitre.org:80'
+#export https_proxy='https://gatekeeper.mitre.org:80'
 
 # --------------------------------------------------------------------
