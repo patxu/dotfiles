@@ -28,6 +28,7 @@ alias e='exit'
 # git alias
 alias gi='git init'
 alias ga='git add'
+alias gsa='git submodule add'
 alias gp='git push'
 alias gl='git log'
 alias gs='git status'

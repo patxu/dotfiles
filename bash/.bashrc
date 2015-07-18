@@ -58,6 +58,11 @@ function cdl(){
 	builtin cd "cs50/labs/lab$*" && ls
 }
 
+rpi() {
+  [[ "${1}" == "ssh" ]] && ssh pi@192.168.1.121
+  [[ "${1}" == "scp" ]] && scp ${2} pi@192.168.1.121:~/
+}
+
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export TERM="xterm-color"
