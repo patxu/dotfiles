@@ -1,6 +1,6 @@
 #Settings
 
-clone with git clone --recursive git://github.com/foo/bar.git to include vim submodules
+clone with "git clone --recursive git://github.com/foo/bar.git" to include vim submodules
 
 my standard settings for setting up a new system
 
