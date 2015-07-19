@@ -21,3 +21,7 @@ dexpot -> only plugin dexgrid
 launchy  
 github for windows  
 gvim (no settings file yet)  
+
+## git commands
+git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=3600'
