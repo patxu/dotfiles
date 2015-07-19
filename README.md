@@ -1,5 +1,7 @@
 #Settings
 
+clone with "git clone --recursive git://github.com/patxu/workspace_settings.git" to include vim submodules
+
 my standard settings for setting up a new system
 
 ## to download:
@@ -19,3 +21,7 @@ dexpot -> only plugin dexgrid
 launchy  
 github for windows  
 gvim (no settings file yet)  
+
+## git commands
+git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=3600'
