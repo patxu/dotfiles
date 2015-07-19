@@ -26,14 +26,10 @@
 
 alias mygcc='gcc -Wall -pedantic -std=c99'
 
-# use the Aquamacs as default editor too
-
-alias aemacs='open /Applications/Aquamacs\ Emacs.app'
-
 # To be safe aliases
 
 if [ -f ~/.bash_aliases ]; then
-   . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 alias rm='rm -i'
@@ -52,10 +48,6 @@ alias ldir="ls -l | grep ’^d’"
 #my functions
 function cd(){
 	builtin cd "$*" && ls -a
-}
-
-function cdl(){
-	builtin cd "cs50/labs/lab$*" && ls
 }
 
 rpi() {
