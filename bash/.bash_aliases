@@ -42,6 +42,3 @@ alias gra='git remote add'
 alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
-
-# vim indent guides
-alias vim='vim -c '\''IndentGuidesEnable'\'
