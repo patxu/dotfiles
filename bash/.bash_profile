@@ -27,6 +27,4 @@ export PS1='\[\e[0;31m\]\@ \W $\[\e[m\] '
 #export http_proxy='http://gatekeeper.mitre.org:80'
 #export https_proxy='https://gatekeeper.mitre.org:80'
 
-source .bashrc
-
 # --------------------------------------------------------------------
