@@ -10,7 +10,7 @@ spotify
 dropbox  
 
 ## mac only:
-hammerspoon -> init.lua  
+hammerspoon -> setup.sh
 karabiner -> private.xml; Key Repeat: delay until repeat 100ms, key repeat 40ms  
 seil -> change caps lock to 80  
 textwrangler?  

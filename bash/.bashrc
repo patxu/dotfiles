@@ -26,14 +26,10 @@
 
 alias mygcc='gcc -Wall -pedantic -std=c99'
 
-# use the Aquamacs as default editor too
-
-alias aemacs='open /Applications/Aquamacs\ Emacs.app'
-
 # To be safe aliases
 
 if [ -f ~/.bash_aliases ]; then
-   . ~/.bash_aliases
+  source ~/.bash_aliases
 fi
 
 alias rm='rm -i'
@@ -54,10 +50,6 @@ function cd(){
 	builtin cd "$*" && ls -a
 }
 
-function cdl(){
-	builtin cd "cs50/labs/lab$*" && ls
-}
-
 rpi() {
   [[ "${1}" == "ssh" ]] && ssh pi@192.168.1.121
   [[ "${1}" == "scp" ]] && scp ${2} pi@192.168.1.121:~/
@@ -67,7 +59,5 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export TERM="xterm-color"
 export PATH=$PATH:~/Library/Android/sdk/platform-tools
-
-source .bash_profile
 
 # --------------------------------------------------------------------
