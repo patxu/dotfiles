@@ -1,5 +1,7 @@
 # $Id: .bashrc,v 1.1 1997/06/24 05:15:12 testuser Exp $
 
+# FOR LOGIN SHELLS (SOURCED BY ~/.bash_profile)
+
 # This file is sourced by bash in every shell.  After editing this
 # file, type `source .bashrc' in any shell which is already open and
 # in which you want the changes to take effect.  For more info type
