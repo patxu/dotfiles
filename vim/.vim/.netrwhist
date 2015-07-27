@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/pat-ubuntu/code/android/android-studio/bin'
-let g:netrw_dirhist_2='/home/pat-ubuntu/code/cs50/lab6/query'
-let g:netrw_dirhist_3='/home/pat-ubuntu/code/fuelband/no_src'

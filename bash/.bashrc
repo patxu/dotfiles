@@ -29,7 +29,7 @@ alias mygcc='gcc -Wall -pedantic -std=c99'
 # To be safe aliases
 
 if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
+  source ~/.bash_aliases
 fi
 
 alias rm='rm -i'
@@ -59,7 +59,5 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export TERM="xterm-color"
 export PATH=$PATH:~/Library/Android/sdk/platform-tools
-
-source .bash_profile
 
 # --------------------------------------------------------------------
