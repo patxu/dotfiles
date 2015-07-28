@@ -22,7 +22,10 @@
 # you can simply add code either before or after sourcing the master
 # file.
 
-export PS1='\e[0;31m\@ \W $\e[m '
+###### Custom Prompt
+export PS1='\[\e[0;31m\]\@ \W $\[\e[m\] '
+
+####### Proxies
 
 #export HTTP_PROXY='http://gatekeeper.mitre.org:80'
 #export HTTPS_PROXY='https://gatekeeper.mitre.org:80'

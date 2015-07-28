@@ -26,7 +26,7 @@
 source ~/.bashrc
 
 ###### Custom Prompt
-export PS1='\e[0;31m\@ \W $\e[m '
+export PS1='\[\e[0;31m\]\@ \W $\[\e[m\] '
 
 ####### Proxies
 
