@@ -1,6 +1,6 @@
 #Settings
 
-clone with "git clone --recursive git://github.com/patxu/workspace_settings.git" to include vim submodules
+clone vim repo with "git clone --recursive https://github.com/patxu/.vim.git"
 
 my standard settings for setting up a new system
 
