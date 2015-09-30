@@ -58,6 +58,7 @@ alias mkdir='mkdir -p'
 
 # alias for ease of use
 alias e='exit'
+alias sshmoose='ssh patxu@moose.cs.dartmouth.edu'
 
 # git alias
 alias gi='git init'
@@ -80,7 +81,7 @@ alias gcl='git clone'
 ####### Functions
 
 function cd(){
-	builtin cd "$*" && ls -a
+	builtin cd "$*" && ls -A
 }
 
 function rpi() {

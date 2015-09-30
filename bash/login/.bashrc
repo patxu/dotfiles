@@ -78,7 +78,7 @@ alias gcl='git clone'
 ####### Functions
 
 function cd(){
-	builtin cd "$*" && ls -a
+	builtin cd "$*" && ls -A
 }
 
 function rpi() {
