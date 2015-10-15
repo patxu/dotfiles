@@ -26,6 +26,7 @@ clone vim repo with `git clone --recursive https://github.com/patxu/.vim.git`
   - OMQuickHelp (setup req.)
   - XToDo
   - XVim
+- Dash
 - system settings
   - sleep, require password in 5 seconds
   - dark theme

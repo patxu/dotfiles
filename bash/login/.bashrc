@@ -81,6 +81,10 @@ function cd(){
 	builtin cd "$*" && ls -A
 }
 
+function g-(){
+	ga . && gm "$*" && gp
+}
+
 function rpi() {
   [[ "${1}" == "ssh" ]] && ssh pi@192.168.1.121
   [[ "${1}" == "scp" ]] && scp ${2} pi@192.168.1.121:~/
