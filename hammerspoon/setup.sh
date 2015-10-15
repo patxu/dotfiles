@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cp -f init.lua ~/.hammerspoon/init.lua
+ln -s ~/code/workspace_settings/hammerspoon/init.lua ~/.hammerspoon/init.lua

@@ -161,20 +161,38 @@ hs.hotkey.bind(hyper, "z", function()
 end)
 
 -----------------------------------------------
--- hyper s for sticky window
+-- hyper g for left 1/3 window
 -----------------------------------------------
 
-hs.hotkey.bind(hyper, "s", function()
+hs.hotkey.bind(hyper, "g", function()
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
 
-    f.w = max.w / 5
-    f.h = max.h / 4
-    f.x = max.w / 2 - f.w / 2
-    f.y = max.h / 2 - f.h / 2
-    
+    f.x = max.x
+    f.y = max.y
+    f.w = max.w / 3
+    f.h = max.h
+
+    win:setFrame(f)
+end)
+
+-----------------------------------------------
+-- hyper ; for right 2/3 window
+-----------------------------------------------
+
+hs.hotkey.bind(hyper, ";", function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+
+    f.x = max.x + (max.w / 3)
+    f.y = max.y
+    f.w = max.w / 3 * 2
+    f.h = max.h
+
     win:setFrame(f)
 end)
 
