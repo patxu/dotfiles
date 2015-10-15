@@ -17,15 +17,21 @@ clone vim repo with `git clone --recursive https://github.com/patxu/.vim.git`
   - delay until repeat: 100ms  
   - key repeat: 40ms  
 - seil  
-  - change caps lock to 80  
+  - change caps lock to key 80  
 - Xcode
+  - Alcatraz (first)
+  - AdjustFontSize
+  - Backlight (setup req.)
+  - GitDiff
+  - OMQuickHelp (setup req.)
+  - XToDo
+  - XVim
 - system settings
-  - sleep, sign-in on wake
+  - sleep, require password in 5 seconds
   - dark theme
 
 ## windows:
-- dexpot  
-  - only dexgrid plugin   
+- dexpot (only dexgrid plugin)
 - launchy  
 - github for windows  
 
