@@ -24,9 +24,13 @@
 
 ###### Sources
 source ~/.bashrc
+source ~/.git-prompt.sh
 
 ###### Custom Prompt
-export PS1='\[\e[0;31m\]\@ \W $\[\e[m\] '
+RED="\e[0;31m"
+CYAN="\e[0;36m"
+GREEN="\e[0;32m"
+export PS1="\[$RED\]\W\[$GREEN\]\$(__git_ps1)\[$RED\] $\[\e[m\] "
 
 ####### Proxies
 
@@ -40,3 +44,8 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export TERM="xterm-color"
 export PATH=$PATH:~/Library/Android/sdk/platform-tools
+
+# Setting PATH for Python 3.5
+# The orginal version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+export PATH
