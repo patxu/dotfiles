@@ -5,18 +5,19 @@ Universal settings for setting up a new system.
 clone vim repo with `git clone --recursive https://github.com/patxu/.vim.git`
 
 ## all systems:
-- chrome  
-- dropbox  
-- spotify  
+- Chrome  
+- Dropbox  
+- Spotify  
+- Atom
 
 ## mac:
-- hammerspoon   
+- Hammerspoon   
   - setup.sh
-- karabiner   
+- Karabiner   
   - private.xml  
   - delay until repeat: 100ms  
   - key repeat: 40ms  
-- seil  
+- Seil  
   - change caps lock to key 80  
 - Xcode
   - Alcatraz (first)
@@ -26,15 +27,14 @@ clone vim repo with `git clone --recursive https://github.com/patxu/.vim.git`
   - OMQuickHelp (setup req.)
   - XToDo
   - XVim
-- Dash
 - system settings
   - sleep, require password in 5 seconds
   - dark theme
 
 ## windows:
-- dexpot (only dexgrid plugin)
-- launchy  
-- github for windows  
+- Dexpot (only dexgrid plugin)
+- Launchy  
+- Github for Windows  
 
 ## git config commands
 `git config --global credential.helper cache`  
