@@ -49,3 +49,15 @@ export PATH=$PATH:~/Library/Android/sdk/platform-tools
 # The orginal version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 export PATH
+
+##
+# Your previous /Users/patxu/.bash_profile file was backed up as /Users/patxu/.bash_profile.macports-saved_2016-02-17_at_15:54:45
+##
+
+# MacPorts Installer addition on 2016-02-17_at_15:54:45: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+
