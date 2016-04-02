@@ -1,0 +1,10 @@
+[credential]
+	helper = cache --timeout=3600
+[user]
+	email = patrick.s.xu.17@dartmouth.edu
+	name = patxu
+[push]
+	default = simple
+[core]
+	autocrlf = input
+	excludesfile = /Users/patxu/.gitignore_global
