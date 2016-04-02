@@ -90,4 +90,7 @@ function rpi() {
   [[ "${1}" == "scp" ]] && scp ${2} pi@192.168.1.121:~/
 }
 
+#Use tab to cycle through all the possible completions.
+bind "TAB: menu-complete"
+
 # --------------------------------------------------------------------
