@@ -8,3 +8,7 @@
 [core]
 	autocrlf = input
 	excludesfile = /Users/patxu/.gitignore_global
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true

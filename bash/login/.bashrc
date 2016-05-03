@@ -70,8 +70,6 @@ alias gm='git commit -m'
 alias gma='git commit -am'
 alias gb='git branch'
 alias gc='git checkout'
-alias gra='git remote add'
-alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
 
@@ -90,7 +88,11 @@ function rpi() {
   [[ "${1}" == "scp" ]] && scp ${2} pi@192.168.1.121:~/
 }
 
-#Use tab to cycle through all the possible completions.
-bind "TAB: menu-complete"
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+  . `brew --prefix`/etc/bash_completion
+fi
+
+# git flow
+# source ~/code/workspace_settings/bash/git-flow-completion.bash
 
 # --------------------------------------------------------------------
