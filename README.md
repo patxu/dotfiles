@@ -11,12 +11,13 @@ clone vim repo with `git clone --recursive https://github.com/patxu/.vim.git`
 - Atom
 
 ## mac:
+- System Preferences
+  - key delay + repeat
 - Hammerspoon   
   - setup.sh
 - Karabiner   
-  - private.xml  
-  - delay until repeat: 100ms  
-  - key repeat: 40ms  
+  - private.xml via setup.sh
+  - check "Remap"
 - Seil  
   - change caps lock to key 80  
 - Xcode

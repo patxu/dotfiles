@@ -73,6 +73,8 @@ alias gc='git checkout'
 alias gpu='git pull'
 alias gcl='git clone'
 
+alias moshfb='mosh -6 patxu@devvm096.prn2'
+
 ####### Functions
 
 function cd(){
