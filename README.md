@@ -13,6 +13,9 @@ clone vim repo with `git clone --recursive https://github.com/patxu/.vim.git`
 ## mac:
 - System Preferences
   - key delay + repeat
+  - disable desktop autoreorganize
+  - Keyboard Shortcuts
+    - meta-[ and meta-] for desktop switching
 - Hammerspoon   
   - setup.sh
 - Karabiner   
