@@ -22,6 +22,9 @@
 # you can simply add code either before or after sourcing the master
 # file.
 
+# command line vim
+set -o vi
+
 
 ####### Aliases
 
@@ -73,7 +76,7 @@ alias gc='git checkout'
 alias gpu='git pull'
 alias gcl='git clone'
 
-alias moshfb='mosh -6 patxu@devvm096.prn2'
+alias moshfb='mosh -6 patxu@dev7340.prn2.facebook.com -- tmux'
 
 ####### Functions
 
