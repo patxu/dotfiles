@@ -66,4 +66,8 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 export JAVA_HOME=$(/usr/libexec/java_home)
 
+## autojump
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
+# rbenv
+eval "$(rbenv init -)"

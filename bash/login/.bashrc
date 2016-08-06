@@ -88,8 +88,8 @@ function rpi() {
   [[ "${1}" == "scp" ]] && scp ${2} pi@192.168.1.121:~/
 }
 
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
+if [ -f ~/.git-completion.bash ]; then
+    . ~/.git-completion.bash
 fi
 
 # git flow
