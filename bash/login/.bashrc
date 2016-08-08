@@ -101,3 +101,5 @@ fi
 # source ~/code/workspace_settings/bash/git-flow-completion.bash
 
 # --------------------------------------------------------------------
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
