@@ -3,7 +3,6 @@
 -----------------------------------------------
 
 local hyper = {"shift", "cmd", "alt", "ctrl"}
-local grid = require "hs.grid"
 
 -----------------------------------------------
 -- hyper h for left one half window
@@ -75,10 +74,10 @@ hs.hotkey.bind(hyper, "j", function()
 end)
 
 -----------------------------------------------
--- hyper f for fullscreen
+-- hyper m for maximize window
 -----------------------------------------------
 
-hs.hotkey.bind(hyper, "f", function()
+hs.hotkey.bind(hyper, "m", function()
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local screen = win:screen()
@@ -89,6 +88,14 @@ hs.hotkey.bind(hyper, "f", function()
     f.w = max.w
     f.h = max.h
     win:setFrame(f)
+end)
+
+-----------------------------------------------
+-- hyper f for fullscreen toggle
+-----------------------------------------------
+
+hs.hotkey.bind(hyper, "f", function()
+  hs.window.focusedWindow():toggleFullScreen()
 end)
 
 -----------------------------------------------
@@ -198,10 +205,10 @@ end)
 
 
 -----------------------------------------------
--- switch window between screens
+-- hyper w to push window to next monitor
 -----------------------------------------------
 
-hs.hotkey.bind(hyper, "w", grid.pushWindowNextScreen)
+hs.hotkey.bind(hyper, "w", hs.grid.pushWindowNextScreen)
 
 -----------------------------------------------
 -- Reload config on write
@@ -210,13 +217,27 @@ hs.hotkey.bind(hyper, "w", grid.pushWindowNextScreen)
 function reload_config(files)
     hs.reload()
 end
-hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reload_config):start()
+-- hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reload_config):start()
+
+hs.pathwatcher.new(os.getenv("HOME") .. "/code/workspace_settings/hammerspoon/", reload_config):start()
 hs.alert.show("Config loaded")
+
+-----------------------------------------------
+-- Hyper p to display the current spotify track
+-----------------------------------------------
+
+hs.hotkey.bind(hyper, 'p', hs.spotify.displayCurrentTrack)
+
+-----------------------------------------------
+-- Hyper t to display the current time
+-----------------------------------------------
+
+hs.hotkey.bind(hyper, 't', function() hs.alert.show(os.date("%A %b %d, %Y - %I:%M%p"), 4) end)
 
 -----------------------------------------------
 -- Hyper i to show window hints
 -----------------------------------------------
 
-hs.hotkey.bind(hyper, "i", function()
-    hs.hints.windowHints()
-end)
+-- hs.hotkey.bind(hyper, "i", function()
+--     hs.hints.windowHints()
+-- end)
