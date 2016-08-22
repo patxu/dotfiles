@@ -74,10 +74,10 @@ hs.hotkey.bind(hyper, "j", function()
 end)
 
 -----------------------------------------------
--- hyper m for maximize window
+-- hyper f for maximize window
 -----------------------------------------------
 
-hs.hotkey.bind(hyper, "m", function()
+hs.hotkey.bind(hyper, "f", function()
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local screen = win:screen()
@@ -91,10 +91,10 @@ hs.hotkey.bind(hyper, "m", function()
 end)
 
 -----------------------------------------------
--- hyper f for fullscreen toggle
+-- hyper r for fullscreen toggle
 -----------------------------------------------
 
-hs.hotkey.bind(hyper, "f", function()
+hs.hotkey.bind(hyper, "r", function()
   hs.window.focusedWindow():toggleFullScreen()
 end)
 
