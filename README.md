@@ -9,6 +9,7 @@ clone vim repo with `git clone --recursive https://github.com/patxu/.vim.git`
 - Dropbox  
 - Spotify  
 - Atom
+- Flux
 
 ## OSX:
 - System Preferences
