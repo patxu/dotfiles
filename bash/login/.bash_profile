@@ -27,10 +27,10 @@ source ~/.bashrc
 source ~/.git-prompt.sh
 
 ###### Custom Prompt
-RED="\e[0;31m"
-CYAN="\e[0;36m"
-GREEN="\e[0;32m"
-export PS1="\[$RED\]\W\[$GREEN\]\$(__git_ps1)\[$RED\] $\[\e[m\] "
+RED="\[\e[0;31m\]"
+CYAN="\[\e[0;36m\]"
+GREEN="\[\e[0;32m\]"
+export PS1="$RED\W$GREEN\$(__git_ps1)$RED $\e[m "
 
 ####### Proxies
 

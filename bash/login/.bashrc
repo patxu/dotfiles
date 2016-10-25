@@ -97,6 +97,9 @@ if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
 fi
 
+# thefuck tool
+eval $(thefuck --alias)
+
 # git flow
 # source ~/code/workspace_settings/bash/git-flow-completion.bash
 

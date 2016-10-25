@@ -1,14 +1,16 @@
 [credential]
-	helper = cache --timeout=3600
+	helper = cache --timeout=7200
 [user]
 	email = patrick.s.xu.17@dartmouth.edu
 	name = patxu
 [push]
 	default = simple
 [core]
-	autocrlf = input
+	autocrlf = true
 	excludesfile = /Users/patxu/.gitignore_global
 [filter "hawser"]
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
 	required = true
+[alias]
+	co = checkout
