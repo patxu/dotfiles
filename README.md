@@ -24,6 +24,7 @@ clone vim repo with `git clone --recursive https://github.com/patxu/.vim.git`
 - Karabiner   
   - private.xml via setup.sh
   - check "Remap"
+  - for MacOS Sierra, https://sayzlim.net/remapping-hyper-key-macos-sierra/
 - Seil  
   - change caps lock to key 80  
 - Xcode
