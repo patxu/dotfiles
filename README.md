@@ -43,6 +43,7 @@ clone vim repo with `git clone --recursive https://github.com/patxu/.vim.git`
 - Dexpot (only dexgrid plugin)
 - Launchy  
 - Github for Windows  
+- Sharp Keys (for Bootcamp)
 
 ## git config
 `git config --global credential.helper cache`  
