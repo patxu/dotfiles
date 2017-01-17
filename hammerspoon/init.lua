@@ -1,213 +1,221 @@
 -----------------------------------------------
--- Set up
+-- Setup
 -----------------------------------------------
 
-local hyper = {"shift", "cmd", "alt", "ctrl"}
+hyper = {"cmd", "alt", "shift", "ctrl"}
+
+-- A global variable for the Hyper Mode
+k = hs.hotkey.modal.new({}, "F17")
+k:bind({}, 'm', nil, function() hs.eventtap.keyStroke(hyper, 'm') end)
+
+-- sequential bindings; e.g. Hyper-w h to move to left half of screen
+w = hs.hotkey.modal.new({}, "F16")
+pressedW = function() w:enter() end
+releasedW = function() end
+k:bind({}, 'w', nil, pressedW, releasedW)
 
 -----------------------------------------------
--- hyper h for left one half window
+-- Window Arrangement
 -----------------------------------------------
 
-hs.hotkey.bind(hyper, "h", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+-- hyper-h for left one half window
+windowH = function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
 
-    f.x = max.x
-    f.y = max.y
-    f.w = max.w / 2
-    f.h = max.h
-    win:setFrame(f)
-end)
+  f.x = max.x
+  f.y = max.y
+  f.w = max.w / 2
+  f.h = max.h
+  win:setFrame(f)
 
------------------------------------------------
--- hyper l for right one half window
------------------------------------------------
+  w:exit()
+end
+w:bind({}, 'h', nil, windowH)
 
-hs.hotkey.bind(hyper, "l", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+-- hyper-l for right one half window
+windowL = function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
 
-    f.x = max.x + (max.w / 2)
-    f.y = max.y
-    f.w = max.w / 2
-    f.h = max.h
-    win:setFrame(f)
-end)
+  f.x = max.x + (max.w / 2)
+  f.y = max.y
+  f.w = max.w / 2
+  f.h = max.h
+  win:setFrame(f)
 
------------------------------------------------
--- hyper k for top one half window
------------------------------------------------
+  w:exit();
+end
+w:bind({}, 'l', nil, windowL)
 
-hs.hotkey.bind(hyper, "k", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+-- hyper-k for top one half window
+windowK = function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
 
-    f.x = max.x
-    f.y = max.y
-    f.w = max.w
-    f.h = max.h / 2
-    win:setFrame(f)
-end)
+  f.x = max.x
+  f.y = max.y
+  f.w = max.w
+  f.h = max.h / 2
+  win:setFrame(f)
 
+  w:exit()
+end
+w:bind({}, 'k', nil, windowK)
 
------------------------------------------------
--- hyper j for bottom one half window
------------------------------------------------
+-- hyper-j for bottom one half window
+windowJ = function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
 
-hs.hotkey.bind(hyper, "j", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+  f.x = max.x
+  f.y = max.y + (max.h / 2)
+  f.w = max.w
+  f.h = max.h / 2
+  win:setFrame(f)
 
-    f.x = max.x
-    f.y = max.y + (max.h / 2)
-    f.w = max.w
-    f.h = max.h / 2
-    win:setFrame(f)
-end)
+  w:exit()
+end
+w:bind({}, 'j', nil, windowJ)
 
------------------------------------------------
--- hyper f for maximize window
------------------------------------------------
+-- hyper-f for maximize window
+windowF = function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
 
-hs.hotkey.bind(hyper, "f", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+  f.x = max.x
+  f.y = max.y
+  f.w = max.w
+  f.h = max.h
+  win:setFrame(f)
 
-    f.x = max.x
-    f.y = max.y
-    f.w = max.w
-    f.h = max.h
-    win:setFrame(f)
-end)
+  w:exit()
+end
+w:bind({}, 'f', nil, windowF)
 
------------------------------------------------
--- hyper r for fullscreen toggle
------------------------------------------------
-
-hs.hotkey.bind(hyper, "r", function()
+-- hyper-r for fullscreen toggle
+windowR = function()
   hs.window.focusedWindow():toggleFullScreen()
-end)
 
------------------------------------------------
--- hyper q for top left one quarter window
------------------------------------------------
+  w:exit()
+end
+w:bind({}, 'r', nil, windowR)
 
-hs.hotkey.bind(hyper, "q", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+-- hyper-q for top left one quarter window
+windowQ = function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
 
-    f.x = max.x
-    f.y = max.y
-    f.w = max.w / 2
-    f.h = max.h / 2
-    win:setFrame(f)
-end)
+  f.x = max.x
+  f.y = max.y
+  f.w = max.w / 2
+  f.h = max.h / 2
+  win:setFrame(f)
 
------------------------------------------------
--- hyper e for top right one quarter window
------------------------------------------------
+  w:exit()
+end
+w:bind({}, 'q', nil, windowE)
 
-hs.hotkey.bind(hyper, "e", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+-- hyper-e for top right one quarter window
+windowE = function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
 
-    f.x = max.x + (max.w / 2)
-    f.y = max.y
-    f.w = max.w / 2
-    f.h = max.h / 2
-    win:setFrame(f)
+  f.x = max.x + (max.w / 2)
+  f.y = max.y
+  f.w = max.w / 2
+  f.h = max.h / 2
+  win:setFrame(f)
 
-end)
+  w:exit()
+end
+w:bind({}, 'e', nil, windowE)
 
------------------------------------------------
--- hyper c for bottom left one quarter window
------------------------------------------------
+-- hyper-c for bottom left one quarter window
+windowC = function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
 
-hs.hotkey.bind(hyper, "c", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+  f.x = max.x + (max.w / 2)
+  f.y = max.y + (max.h / 2)
+  f.w = max.w / 2
+  f.h = max.h / 2
+  win:setFrame(f)
 
-    f.x = max.x + (max.w / 2)
-    f.y = max.y + (max.h / 2)
-    f.w = max.w / 2
-    f.h = max.h / 2
-    win:setFrame(f)
-end)
+  w:exit()
+end
+w:bind({}, 'c', nil, windowC)
 
------------------------------------------------
--- hyper z for bottom right one quarter window
------------------------------------------------
+-- hyper-z for bottom right one quarter window
+windowZ = function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
 
-hs.hotkey.bind(hyper, "z", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+  f.x = max.x
+  f.y = max.y + (max.h / 2)
+  f.w = max.w / 2
+  f.h = max.h / 2
+  win:setFrame(f)
 
-    f.x = max.x
-    f.y = max.y + (max.h / 2)
-    f.w = max.w / 2
-    f.h = max.h / 2
-    win:setFrame(f)
-end)
+  w:exit()
+end
+w:bind({}, 'z', nil, windowZ)
 
------------------------------------------------
--- hyper g for left 1/3 window
------------------------------------------------
+-- hyper-g for left 1/3 window
+windowG = function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
 
-hs.hotkey.bind(hyper, "g", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+  f.x = max.x
+  f.y = max.y
+  f.w = max.w / 3
+  f.h = max.h
 
-    f.x = max.x
-    f.y = max.y
-    f.w = max.w / 3
-    f.h = max.h
+  win:setFrame(f)
 
-    win:setFrame(f)
-end)
+  w:exit()
+end
+w:bind({}, 'g', nil, windowG)
 
------------------------------------------------
--- hyper ; for right 2/3 window
------------------------------------------------
+-- hyper-; for right 2/3 window
+windowSemi = function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
 
-hs.hotkey.bind(hyper, ";", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+  f.x = max.x + (max.w / 3)
+  f.y = max.y
+  f.w = max.w / 3 * 2
+  f.h = max.h
 
-    f.x = max.x + (max.w / 3)
-    f.y = max.y
-    f.w = max.w / 3 * 2
-    f.h = max.h
+  win:setFrame(f)
 
-    win:setFrame(f)
-end)
+  w:exit()
+end
+w:bind({}, ';', nil, windowSemi)
 
-
------------------------------------------------
--- hyper w to push window to next monitor
------------------------------------------------
-
+-- hyper-w to push window to next monitor
 hs.hotkey.bind(hyper, "w", hs.grid.pushWindowNextScreen)
 
 -----------------------------------------------
@@ -215,9 +223,8 @@ hs.hotkey.bind(hyper, "w", hs.grid.pushWindowNextScreen)
 -----------------------------------------------
 
 function reload_config(files)
-    hs.reload()
+  hs.reload()
 end
--- hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reload_config):start()
 
 hs.pathwatcher.new(os.getenv("HOME") .. "/code/dotfiles/hammerspoon/", reload_config):start()
 hs.alert.show("Config loaded")
@@ -234,10 +241,20 @@ hs.hotkey.bind(hyper, 'p', hs.spotify.displayCurrentTrack)
 
 hs.hotkey.bind(hyper, 't', function() hs.alert.show(os.date("%A %b %d, %Y - %I:%M%p"), 4) end)
 
------------------------------------------------
--- Hyper i to show window hints
------------------------------------------------
+-- Enter Hyper Mode when F18 (Hyper/Capslock) is pressed
+pressedF18 = function()
+  k.triggered = false
+  k:enter()
+end
 
--- hs.hotkey.bind(hyper, "i", function()
---     hs.hints.windowHints()
--- end)
+-- Leave Hyper Mode when F18 (Hyper/Capslock) is pressed,
+-- send ESCAPE if no other keys are pressed.
+releasedF18 = function()
+  k:exit()
+  if not k.triggered then
+    hs.eventtap.keyStroke({}, 'ESCAPE')
+  end
+end
+
+-- Bind the Hyper key
+f18 = hs.hotkey.bind({}, 'F18', pressedF18, releasedF18)
