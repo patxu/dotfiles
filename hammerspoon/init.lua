@@ -2,23 +2,40 @@
 -- Setup
 -----------------------------------------------
 
-hyper = {"cmd", "alt", "shift", "ctrl"}
-
 -- A global variable for the Hyper Mode
-k = hs.hotkey.modal.new({}, "F17")
-k:bind({}, 'm', nil, function() hs.eventtap.keyStroke(hyper, 'm') end)
+hyperK = hs.hotkey.modal.new({}, "F17")
+hyper = {"cmd", "alt", "shift", "ctrl"}
+hyperK:bind({}, 'm', nil, function() hs.eventtap.keyStroke(hyper, 'm') end)
 
 -- sequential bindings; e.g. Hyper-w h to move to left half of screen
-w = hs.hotkey.modal.new({}, "F16")
-pressedW = function() w:enter() end
+hyperW = hs.hotkey.modal.new({}, "F16")
+pressedW = function() hyperW:enter() end
 releasedW = function() end
-k:bind({}, 'w', nil, pressedW, releasedW)
+hyperK:bind({}, 'w', nil, pressedW, releasedW)
+
+-- Enter Hyper Mode when F18 (Hyper/Capslock) is pressed
+pressedF18 = function()
+  hyperK.triggered = false
+  hyperK:enter()
+end
+
+-- Leave Hyper Mode when F18 (Hyper/Capslock) is pressed,
+-- send ESCAPE if no other keys are pressed.
+releasedF18 = function()
+  hyperK:exit()
+  if not hyperK.triggered then
+    hs.eventtap.keyStroke({}, 'ESCAPE')
+  end
+end
+
+-- Bind the Hyper key
+f18 = hs.hotkey.bind({}, 'F18', pressedF18, releasedF18)
 
 -----------------------------------------------
--- Window Arrangement
+-- Window arrangement utilitites
 -----------------------------------------------
 
--- hyper-h for left one half window
+-- hyper h for left one half window
 windowH = function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -31,11 +48,11 @@ windowH = function()
   f.h = max.h
   win:setFrame(f)
 
-  w:exit()
+  hyperW:exit()
 end
-w:bind({}, 'h', nil, windowH)
+hyperW:bind({}, 'h', nil, windowH)
 
--- hyper-l for right one half window
+-- hyper l for right one half window
 windowL = function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -48,11 +65,11 @@ windowL = function()
   f.h = max.h
   win:setFrame(f)
 
-  w:exit();
+  hyperW:exit();
 end
-w:bind({}, 'l', nil, windowL)
+hyperW:bind({}, 'l', nil, windowL)
 
--- hyper-k for top one half window
+-- hyper k for top one half window
 windowK = function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -65,11 +82,11 @@ windowK = function()
   f.h = max.h / 2
   win:setFrame(f)
 
-  w:exit()
+  hyperW:exit()
 end
-w:bind({}, 'k', nil, windowK)
+hyperW:bind({}, 'k', nil, windowK)
 
--- hyper-j for bottom one half window
+-- hyper j for bottom one half window
 windowJ = function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -82,11 +99,11 @@ windowJ = function()
   f.h = max.h / 2
   win:setFrame(f)
 
-  w:exit()
+  hyperW:exit()
 end
-w:bind({}, 'j', nil, windowJ)
+hyperW:bind({}, 'j', nil, windowJ)
 
--- hyper-f for maximize window
+-- hyper f for maximize window
 windowF = function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -99,19 +116,19 @@ windowF = function()
   f.h = max.h
   win:setFrame(f)
 
-  w:exit()
+  hyperW:exit()
 end
-w:bind({}, 'f', nil, windowF)
+hyperW:bind({}, 'f', nil, windowF)
 
--- hyper-r for fullscreen toggle
+-- hyper r for fullscreen toggle
 windowR = function()
   hs.window.focusedWindow():toggleFullScreen()
 
-  w:exit()
+  hyperW:exit()
 end
-w:bind({}, 'r', nil, windowR)
+hyperW:bind({}, 'r', nil, windowR)
 
--- hyper-q for top left one quarter window
+-- hyper q for top left one quarter window
 windowQ = function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -124,11 +141,11 @@ windowQ = function()
   f.h = max.h / 2
   win:setFrame(f)
 
-  w:exit()
+  hyperW:exit()
 end
-w:bind({}, 'q', nil, windowE)
+hyperW:bind({}, 'q', nil, windowQ)
 
--- hyper-e for top right one quarter window
+-- hyper e for top right one quarter window
 windowE = function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -141,11 +158,11 @@ windowE = function()
   f.h = max.h / 2
   win:setFrame(f)
 
-  w:exit()
+  hyperW:exit()
 end
-w:bind({}, 'e', nil, windowE)
+hyperW:bind({}, 'e', nil, windowE)
 
--- hyper-c for bottom left one quarter window
+-- hyper c for bottom left one quarter window
 windowC = function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -158,11 +175,11 @@ windowC = function()
   f.h = max.h / 2
   win:setFrame(f)
 
-  w:exit()
+  hyperW:exit()
 end
-w:bind({}, 'c', nil, windowC)
+hyperW:bind({}, 'c', nil, windowC)
 
--- hyper-z for bottom right one quarter window
+-- hyper z for bottom right one quarter window
 windowZ = function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -175,11 +192,11 @@ windowZ = function()
   f.h = max.h / 2
   win:setFrame(f)
 
-  w:exit()
+  hyperW:exit()
 end
-w:bind({}, 'z', nil, windowZ)
+hyperW:bind({}, 'z', nil, windowZ)
 
--- hyper-g for left 1/3 window
+-- hyper g for left 1/3 window
 windowG = function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -193,11 +210,11 @@ windowG = function()
 
   win:setFrame(f)
 
-  w:exit()
+  hyperW:exit()
 end
-w:bind({}, 'g', nil, windowG)
+hyperW:bind({}, 'g', nil, windowG)
 
--- hyper-; for right 2/3 window
+-- hyper ; for right 2/3 window
 windowSemi = function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -211,50 +228,42 @@ windowSemi = function()
 
   win:setFrame(f)
 
-  w:exit()
+  hyperW:exit()
 end
-w:bind({}, ';', nil, windowSemi)
+hyperW:bind({}, ';', nil, windowSemi)
 
--- hyper-w to push window to next monitor
-hs.hotkey.bind(hyper, "w", hs.grid.pushWindowNextScreen)
+-- hyper w to push window to next monitor
+windowPush = function()
+  hs.gridpushwindownextscreen()
+  hyperW:exit()
+end
+hyperW:bind({}, 'w', nil, windowPush)
+
+
+-----------------------------------------------
+-- some nice system utilities
+-----------------------------------------------
+
+-- Hyper p to display the current spotify track
+displayCurrentTrack = function()
+  hs.spotify.displayCurrentTrack()
+  hyperK:exit()
+end
+hyperK:bind({}, 'p', nil, displayCurrentTrack)
+
+-- Hyper t to display the current time
+showTime = function()
+  hs.alert.show(os.date("%A %b %d, %Y - %I:%M%p"), 2)
+  hyperK:exit()
+end
+hyperK:bind({}, 't', nil, showTime)
 
 -----------------------------------------------
 -- Reload config on write
 -----------------------------------------------
-
 function reload_config(files)
   hs.reload()
 end
 
 hs.pathwatcher.new(os.getenv("HOME") .. "/code/dotfiles/hammerspoon/", reload_config):start()
 hs.alert.show("Config loaded")
-
------------------------------------------------
--- Hyper p to display the current spotify track
------------------------------------------------
-
-hs.hotkey.bind(hyper, 'p', hs.spotify.displayCurrentTrack)
-
------------------------------------------------
--- Hyper t to display the current time
------------------------------------------------
-
-hs.hotkey.bind(hyper, 't', function() hs.alert.show(os.date("%A %b %d, %Y - %I:%M%p"), 4) end)
-
--- Enter Hyper Mode when F18 (Hyper/Capslock) is pressed
-pressedF18 = function()
-  k.triggered = false
-  k:enter()
-end
-
--- Leave Hyper Mode when F18 (Hyper/Capslock) is pressed,
--- send ESCAPE if no other keys are pressed.
-releasedF18 = function()
-  k:exit()
-  if not k.triggered then
-    hs.eventtap.keyStroke({}, 'ESCAPE')
-  end
-end
-
--- Bind the Hyper key
-f18 = hs.hotkey.bind({}, 'F18', pressedF18, releasedF18)
