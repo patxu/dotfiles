@@ -17,21 +17,21 @@
 ## Hotkeys
 the supported hotkeys, grouped by action type
 
-#### 🐯 Window Arrangement `(caps-w)`
-- `caps-w-h` – move window to left half of screen
-- `caps-w-j` – bottom half
-- `caps-w-k` – top half
-- `caps-w-l` – right half
+#### 🐯 Window Arrangement `(caps-a)`
+- `caps-a-h` – move window to left half of screen
+- `caps-a-j` – bottom half
+- `caps-a-k` – top half
+- `caps-a-l` – right half
 
 
-- `caps-w-q` – top left quadrant
-- `caps-w-e` – top right
-- `caps-w-z` – bottom left
-- `caps-w-c` – bottom right
+- `caps-a-q` – top left quadrant
+- `caps-a-e` – top right
+- `caps-a-z` – bottom left
+- `caps-a-c` – bottom right
 
 
-- `caps-w-g` – left 1/3 of the screen
-- `caps-w-;` – right 2/3
+- `caps-a-g` – left 1/3 of the screen
+- `caps-a-;` – right 2/3
 
 #### 🐙 Window Focusing `(caps-f)`
 - `caps-f-h` – focus the window to the left

@@ -33,101 +33,101 @@ hs.grid.setMargins('0, 0')
 
 -- sequential binding; e.g. Hyper-w h to move to left half of screen
 -- sequential binding for w
-hyperW = hs.hotkey.modal.new({}, "F16")
-pressedW = function() hyperW:enter() end
+hyperA = hs.hotkey.modal.new({}, "F16")
+pressedW = function() hyperA:enter() end
 releasedW = function() end
-hyperK:bind({}, 'w', nil, pressedW, releasedW)
+hyperK:bind({}, 'a', nil, pressedW, releasedW)
 
 -- hyper h for left one half window
 windowH = function()
   push(0,0,0.5,1)
-  hyperW:exit()
+  hyperA:exit()
 end
-hyperW:bind({}, 'h', nil, windowH)
+hyperA:bind({}, 'h', nil, windowH)
 
 -- hyper l for right one half window
 windowL = function()
   push(0.5,0,0.5,1)
-  hyperW:exit();
+  hyperA:exit();
 end
-hyperW:bind({}, 'l', nil, windowL)
+hyperA:bind({}, 'l', nil, windowL)
 
 -- hyper k for top one half window
 windowK = function()
   push(0,0,1,0.5)
-  hyperW:exit()
+  hyperA:exit()
 end
-hyperW:bind({}, 'k', nil, windowK)
+hyperA:bind({}, 'k', nil, windowK)
 
 -- hyper j for bottom one half window
 windowJ = function()
   push(0,0.5,1,0.5)
-  hyperW:exit()
+  hyperA:exit()
 end
-hyperW:bind({}, 'j', nil, windowJ)
+hyperA:bind({}, 'j', nil, windowJ)
 
 -- hyper f for maximize window
 windowF = function()
   push(0,0,1,1)
-  hyperW:exit()
+  hyperA:exit()
 end
-hyperW:bind({}, 'f', nil, windowF)
+hyperA:bind({}, 'f', nil, windowF)
 
 -- hyper r for fullscreen toggle
 windowR = function()
   hs.window.focusedWindow():toggleFullScreen()
-  hyperW:exit()
+  hyperA:exit()
 end
-hyperW:bind({}, 'r', nil, windowR)
+hyperA:bind({}, 'r', nil, windowR)
 
 -- hyper q for top left one quarter window
 windowQ = function()
   push(0,0,0.5,0.5)
-  hyperW:exit()
+  hyperA:exit()
 end
-hyperW:bind({}, 'q', nil, windowQ)
+hyperA:bind({}, 'q', nil, windowQ)
 
 -- hyper e for top right one quarter window
 windowE = function()
   push(0.5,0,0.5,0.5)
-  hyperW:exit()
+  hyperA:exit()
 end
-hyperW:bind({}, 'e', nil, windowE)
+hyperA:bind({}, 'e', nil, windowE)
 
 -- hyper c for bottom left one quarter window
 windowC = function()
   push(0.5,0.5,0.5,0.5)
-  hyperW:exit()
+  hyperA:exit()
 end
-hyperW:bind({}, 'c', nil, windowC)
+hyperA:bind({}, 'c', nil, windowC)
 
 -- hyper z for bottom right one quarter window
 windowZ = function()
   push(0,0.5,0.5,0.5)
-  hyperW:exit()
+  hyperA:exit()
 end
-hyperW:bind({}, 'z', nil, windowZ)
+hyperA:bind({}, 'z', nil, windowZ)
 
 -- hyper g for left 1/3 window
 windowG = function()
   push(0,0,(1/3),1)
-  hyperW:exit()
+  hyperA:exit()
 end
-hyperW:bind({}, 'g', nil, windowG)
+hyperA:bind({}, 'g', nil, windowG)
 
 -- hyper ; for right 2/3 window
 windowSemi = function()
   push((1/3),0,(2/3),1)
-  hyperW:exit()
+  hyperA:exit()
 end
-hyperW:bind({}, ';', nil, windowSemi)
+hyperA:bind({}, ';', nil, windowSemi)
 
 -- hyper w to push window to next monitor
 -- windowPush = function()
 --   hs.gridpushwindownextscreen()
---   hyperW:exit()
+--   hyperA:exit()
 -- end
--- hyperW:bind({}, 'n', nil, windowPush)
+-- hyperA:bind({}, 'n', nil, windowPush)
 
 -- function()
 --   local win = hs.window.focusedWindow()
