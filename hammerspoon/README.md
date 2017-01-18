@@ -16,7 +16,8 @@
 
 ## Hotkeys
 the supported hotkeys, grouped by action type
-### Window Arrangement `(caps-w)`
+
+#### 🐯 Window Arrangement `(caps-w)`
 - `caps-w-h` – move window to left half of screen
 - `caps-w-j` – bottom half
 - `caps-w-k` – top half
@@ -32,32 +33,34 @@ the supported hotkeys, grouped by action type
 - `caps-w-g` – left 1/3 of the screen
 - `caps-w-;` – right 2/3
 
-### Window Focusing `(caps-f)`
+#### 🐙 Window Focusing `(caps-f)`
 - `caps-f-h` – focus the window to the left
 - `caps-f-j` – bottom
 - `caps-f-k` – up
 - `caps-f-l` – right
 
-### Window Moving `(caps-m)`
+#### 🌟 Window Moving `(caps-m)`
 - `caps-m-h` – move window to the screen to the west
 - `caps-m-j` – south
 - `caps-m-k` – north
 - `caps-m-l` – east
 
-### System/Program Utilities
+#### 🐷 System/Program Utilities
 - `caps-t` – view the date and time
 - `caps-p` – see what's playing on Spotify
 
+- a task you do frequently that you think should have a shortcut? let me know!
+
 ## Setup
+- ### System Preferences
+  - remap caps_lock to no action
+    <img src="imgs/sys-prefs.png" width="800px">
+
 - ### Karabiner-Elements
   - download [Karabiner-Elements](https://github.com/tekezo/Karabiner-Elements)
   - Use Karabiner-Elements to remap caps_lock to F18.
 
     <img src="imgs/karabiner-elements.png" width="800px">
-
-- ### System Preferences
-  - remap caps_lock to no action
-    <img src="imgs/sys-prefs.png" width="800px">
 
 - ### Hammerspoon
   - download [Hammerspoon](http://www.hammerspoon.org/)

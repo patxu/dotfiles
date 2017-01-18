@@ -223,7 +223,7 @@ end
 hyperM:bind({}, 'j', nil, throwSouth)
 
 -----------------------------------------------
--- some nice system utilities
+-- some nice system/program utilities
 -----------------------------------------------
 
 -- Hyper p to display the current spotify track
