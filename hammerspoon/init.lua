@@ -1,17 +1,11 @@
 -----------------------------------------------
--- Setup
+-- Hyper Key Setup
 -----------------------------------------------
 
 -- A global variable for the Hyper Mode
 hyperK = hs.hotkey.modal.new({}, "F17")
 hyper = {"cmd", "alt", "shift", "ctrl"}
 hyperK:bind({}, 'm', nil, function() hs.eventtap.keyStroke(hyper, 'm') end)
-
--- sequential bindings; e.g. Hyper-w h to move to left half of screen
-hyperW = hs.hotkey.modal.new({}, "F16")
-pressedW = function() hyperW:enter() end
-releasedW = function() end
-hyperK:bind({}, 'w', nil, pressedW, releasedW)
 
 -- Enter Hyper Mode when F18 (Hyper/Capslock) is pressed
 pressedF18 = function()
@@ -34,88 +28,47 @@ f18 = hs.hotkey.bind({}, 'F18', pressedF18, releasedF18)
 -----------------------------------------------
 -- Window arrangement utilitites
 -----------------------------------------------
+hs.window.animationDuration = 0
+hs.grid.setMargins('0, 0')
+
+-- sequential binding; e.g. Hyper-w h to move to left half of screen
+-- sequential binding for w
+hyperW = hs.hotkey.modal.new({}, "F16")
+pressedW = function() hyperW:enter() end
+releasedW = function() end
+hyperK:bind({}, 'w', nil, pressedW, releasedW)
 
 -- hyper h for left one half window
 windowH = function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
-  win:setFrame(f)
-
+  push(0,0,0.5,1)
   hyperW:exit()
 end
 hyperW:bind({}, 'h', nil, windowH)
 
 -- hyper l for right one half window
 windowL = function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + (max.w / 2)
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
-  win:setFrame(f)
-
+  push(0.5,0,0.5,1)
   hyperW:exit();
 end
 hyperW:bind({}, 'l', nil, windowL)
 
 -- hyper k for top one half window
 windowK = function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w
-  f.h = max.h / 2
-  win:setFrame(f)
-
+  push(0,0,1,0.5)
   hyperW:exit()
 end
 hyperW:bind({}, 'k', nil, windowK)
 
 -- hyper j for bottom one half window
 windowJ = function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y + (max.h / 2)
-  f.w = max.w
-  f.h = max.h / 2
-  win:setFrame(f)
-
+  push(0,0.5,1,0.5)
   hyperW:exit()
 end
 hyperW:bind({}, 'j', nil, windowJ)
 
 -- hyper f for maximize window
 windowF = function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w
-  f.h = max.h
-  win:setFrame(f)
-
+  push(0,0,1,1)
   hyperW:exit()
 end
 hyperW:bind({}, 'f', nil, windowF)
@@ -123,122 +76,151 @@ hyperW:bind({}, 'f', nil, windowF)
 -- hyper r for fullscreen toggle
 windowR = function()
   hs.window.focusedWindow():toggleFullScreen()
-
   hyperW:exit()
 end
 hyperW:bind({}, 'r', nil, windowR)
 
 -- hyper q for top left one quarter window
 windowQ = function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h / 2
-  win:setFrame(f)
-
+  push(0,0,0.5,0.5)
   hyperW:exit()
 end
 hyperW:bind({}, 'q', nil, windowQ)
 
 -- hyper e for top right one quarter window
 windowE = function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + (max.w / 2)
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h / 2
-  win:setFrame(f)
-
+  push(0.5,0,0.5,0.5)
   hyperW:exit()
 end
 hyperW:bind({}, 'e', nil, windowE)
 
 -- hyper c for bottom left one quarter window
 windowC = function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + (max.w / 2)
-  f.y = max.y + (max.h / 2)
-  f.w = max.w / 2
-  f.h = max.h / 2
-  win:setFrame(f)
-
+  push(0.5,0.5,0.5,0.5)
   hyperW:exit()
 end
 hyperW:bind({}, 'c', nil, windowC)
 
 -- hyper z for bottom right one quarter window
 windowZ = function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y + (max.h / 2)
-  f.w = max.w / 2
-  f.h = max.h / 2
-  win:setFrame(f)
-
+  push(0,0.5,0.5,0.5)
   hyperW:exit()
 end
 hyperW:bind({}, 'z', nil, windowZ)
 
 -- hyper g for left 1/3 window
 windowG = function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w / 3
-  f.h = max.h
-
-  win:setFrame(f)
-
+  push(0,0,(1/3),1)
   hyperW:exit()
 end
 hyperW:bind({}, 'g', nil, windowG)
 
 -- hyper ; for right 2/3 window
 windowSemi = function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + (max.w / 3)
-  f.y = max.y
-  f.w = max.w / 3 * 2
-  f.h = max.h
-
-  win:setFrame(f)
-
+  push((1/3),0,(2/3),1)
   hyperW:exit()
 end
 hyperW:bind({}, ';', nil, windowSemi)
 
 -- hyper w to push window to next monitor
-windowPush = function()
-  hs.gridpushwindownextscreen()
-  hyperW:exit()
-end
-hyperW:bind({}, 'w', nil, windowPush)
+-- windowPush = function()
+--   hs.gridpushwindownextscreen()
+--   hyperW:exit()
+-- end
+-- hyperW:bind({}, 'n', nil, windowPush)
 
+-- function()
+--   local win = hs.window.focusedWindow()
+--   if (win) then
+--     win:moveToScreen(hs.screen.get(second_monitor))
+--   end
+-- end)
+
+-- utility function for moving windows around
+function push(x, y, w, h)
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x + (max.w*x)
+  f.y = max.y + (max.h*y)
+  f.w = max.w*w
+  f.h = max.h*h
+  win:setFrame(f)
+end
+
+-----------------------------------------------
+-- window focusing
+-----------------------------------------------
+
+-- sequential binding for f
+hyperF = hs.hotkey.modal.new({}, "F15")
+pressedF = function() hyperF:enter() end
+releasedF = function() end
+hyperK:bind({}, 'f', nil, pressedF, releasedF)
+
+focusWest = function()
+  hs.window.focusWindowWest()
+  hyperF:exit()
+end
+hyperF:bind({}, 'h', nil, focusWest)
+
+focusEast = function()
+  hs.window.focusWindowEast()
+  hyperF:exit()
+end
+hyperF:bind({}, 'l', nil, focusEast)
+
+focusNorth = function()
+  hs.window.focusWindowNorth()
+  hyperF:exit()
+end
+hyperF:bind({}, 'k', nil, focusNorth)
+
+focusSouth = function()
+  hs.window.focusWindowSouth()
+  hyperF:exit()
+end
+hyperF:bind({}, 'j', nil, focusSouth)
+
+-----------------------------------------------
+-- moving windows to other screens
+-----------------------------------------------
+
+-- sequential binding for m
+hyperM = hs.hotkey.modal.new({}, "F14")
+pressedM = function() hyperM:enter() end
+releasedM = function() end
+hyperK:bind({}, 'm', nil, pressedM, releasedM)
+
+throwWest = function()
+  local win = hs.window.focusedWindow()
+  win:moveOneScreenWest()
+  hyperM:exit()
+end
+hyperM:bind({}, 'h', nil, throwWest)
+
+throwEast = function()
+  local win = hs.window.focusedWindow()
+  win:moveOneScreenEast()
+  hyperM:exit()
+end
+hyperM:bind({}, 'l', nil, throwEast)
+
+throwNorth = function()
+  local win = hs.window.focusedWindow()
+  win:moveOneScreenNorth()
+  hyperM:exit()
+end
+hyperM:bind({}, 'k', nil, throwNorth)
+
+throwSouth = function()
+  local win = hs.window.focusedWindow()
+  win:moveOneScreenSouth()
+  hyperM:exit()
+end
+hyperM:bind({}, 'j', nil, throwSouth)
 
 -----------------------------------------------
 -- some nice system utilities
@@ -265,5 +247,5 @@ function reload_config(files)
   hs.reload()
 end
 
-hs.pathwatcher.new(os.getenv("HOME") .. "/code/dotfiles/hammerspoon/", reload_config):start()
+hs.pathwatcher.new(os.getenv("HOME") .. "/code/dotfiles/hammerspoon/init.lua", reload_config):start()
 hs.alert.show("Config loaded")
