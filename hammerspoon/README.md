@@ -58,7 +58,7 @@ the supported hotkeys, grouped by action type
 
 - ### Karabiner-Elements
   - download [Karabiner-Elements](https://github.com/tekezo/Karabiner-Elements)
-  - Use Karabiner-Elements to remap caps_lock to F18.
+  - Use Karabiner-Elements to remap caps_lock to f18.
 
     <img src="imgs/karabiner-elements.png" width="800px">
 
