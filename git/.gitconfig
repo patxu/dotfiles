@@ -1,7 +1,7 @@
 [credential]
 	helper = cache --timeout=7200
 [user]
-	email = patrick.s.xu.17@dartmouth.edu
+	email = patrickxu13@gmail.com
 	name = patxu
 [push]
 	default = simple
