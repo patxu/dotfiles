@@ -5,7 +5,11 @@
 -- A global variable for the Hyper Mode
 hyperK = hs.hotkey.modal.new({}, "F17")
 hyper = {"cmd", "alt", "shift", "ctrl"}
-hyperK:bind({}, 'm', nil, function() hs.eventtap.keyStroke(hyper, 'm') end)
+
+-- Bind 'm' for hyper-m < > commands
+hyperK:bind({}, 'm', nil, function()
+  hs.eventtap.keyStroke(hyper, 'm')
+end)
 
 -- Enter Hyper Mode when F18 (Hyper/Capslock) is pressed
 pressedF18 = function()
@@ -31,82 +35,87 @@ f18 = hs.hotkey.bind({}, 'F18', pressedF18, releasedF18)
 hs.window.animationDuration = 0
 hs.grid.setMargins('0, 0')
 
--- sequential binding; e.g. Hyper-w h to move to left half of screen
--- -- sequential binding for w
--- hyperK = hs.hotkey.modal.new({}, "F16")
--- pressedW = function() hyperK:enter() end
--- releasedW = function() end
--- hyperK:bind({}, 'a', nil, pressedW, releasedW)
-
 -- hyper h for left one half window
 windowH = function()
   push(0,0,0.5,1)
+  hyperK.triggered = true
 end
 hyperK:bind({}, 'h', nil, windowH)
 
 -- hyper l for right one half window
 windowL = function()
   push(0.5,0,0.5,1)
+  hyperK.triggered = true
 end
 hyperK:bind({}, 'l', nil, windowL)
 
 -- hyper k for top one half window
 windowK = function()
   push(0,0,1,0.5)
+  hyperK.triggered = true
 end
 hyperK:bind({}, 'k', nil, windowK)
 
 -- hyper j for bottom one half window
 windowJ = function()
   push(0,0.5,1,0.5)
+  hyperK.triggered = true
 end
 hyperK:bind({}, 'j', nil, windowJ)
 
 -- hyper f for maximize window
 windowF = function()
   push(0,0,1,1)
+  hyperK.triggered = true
 end
 hyperK:bind({}, 'f', nil, windowF)
 
 -- hyper r for fullscreen toggle
 windowR = function()
   hs.window.focusedWindow():toggleFullScreen()
+  hyperK.triggered = true
 end
 hyperK:bind({}, 'r', nil, windowR)
 
 -- hyper q for top left one quarter window
 windowQ = function()
   push(0,0,0.5,0.5)
+  hyperK.triggered = true
 end
 hyperK:bind({}, 'q', nil, windowQ)
 
 -- hyper e for top right one quarter window
 windowE = function()
   push(0.5,0,0.5,0.5)
+  hyperK.triggered = true
 end
 hyperK:bind({}, 'e', nil, windowE)
 
 -- hyper c for bottom left one quarter window
 windowC = function()
   push(0.5,0.5,0.5,0.5)
+  hyperK.triggered = true
 end
 hyperK:bind({}, 'c', nil, windowC)
 
 -- hyper z for bottom right one quarter window
 windowZ = function()
   push(0,0.5,0.5,0.5)
+  hyperK.triggered = true
 end
 hyperK:bind({}, 'z', nil, windowZ)
 
 -- hyper g for left 1/3 window
 windowG = function()
   push(0,0,(1/3),1)
+  hyperK.triggered = true
 end
 hyperK:bind({}, 'g', nil, windowG)
 
 -- hyper ; for right 2/3 window
 windowSemi = function()
   push((1/3),0,(2/3),1)
+  hyperK.triggered = true
 end
 hyperK:bind({}, ';', nil, windowSemi)
 
@@ -149,24 +158,28 @@ hyperK:bind({}, 's', nil, pressedF, releasedF)
 
 focusWest = function()
   hs.window.focusWindowWest()
+  hyperK.triggered = true
   hyperS:exit()
 end
 hyperS:bind({}, 'h', nil, focusWest)
 
 focusEast = function()
   hs.window.focusWindowEast()
+  hyperK.triggered = true
   hyperS:exit()
 end
 hyperS:bind({}, 'l', nil, focusEast)
 
 focusNorth = function()
   hs.window.focusWindowNorth()
+  hyperK.triggered = true
   hyperS:exit()
 end
 hyperS:bind({}, 'k', nil, focusNorth)
 
 focusSouth = function()
   hs.window.focusWindowSouth()
+  hyperK.triggered = true
   hyperS:exit()
 end
 hyperS:bind({}, 'j', nil, focusSouth)
@@ -184,6 +197,7 @@ hyperK:bind({}, 'm', nil, pressedM, releasedM)
 throwWest = function()
   local win = hs.window.focusedWindow()
   win:moveOneScreenWest()
+  hyperK.triggered = true
   hyperM:exit()
 end
 hyperM:bind({}, 'h', nil, throwWest)
@@ -191,6 +205,7 @@ hyperM:bind({}, 'h', nil, throwWest)
 throwEast = function()
   local win = hs.window.focusedWindow()
   win:moveOneScreenEast()
+  hyperK.triggered = true
   hyperM:exit()
 end
 hyperM:bind({}, 'l', nil, throwEast)
@@ -198,6 +213,7 @@ hyperM:bind({}, 'l', nil, throwEast)
 throwNorth = function()
   local win = hs.window.focusedWindow()
   win:moveOneScreenNorth()
+  hyperK.triggered = true
   hyperM:exit()
 end
 hyperM:bind({}, 'k', nil, throwNorth)
@@ -205,6 +221,7 @@ hyperM:bind({}, 'k', nil, throwNorth)
 throwSouth = function()
   local win = hs.window.focusedWindow()
   win:moveOneScreenSouth()
+  hyperK.triggered = true
   hyperM:exit()
 end
 hyperM:bind({}, 'j', nil, throwSouth)
@@ -216,12 +233,14 @@ hyperM:bind({}, 'j', nil, throwSouth)
 -- Hyper p to display the current spotify track
 displayCurrentTrack = function()
   hs.spotify.displayCurrentTrack()
+  hyperK.triggered = true
 end
 hyperK:bind({}, 'p', nil, displayCurrentTrack)
 
 -- Hyper t to display the current time
 showTime = function()
-  hs.alert.show(os.date("%A %b %d, %Y - %I:%M%p"), 2)
+  hs.alert.show(os.date("%A %b %d - %I:%M%p"), 2)
+  hyperK.triggered = true
 end
 hyperK:bind({}, 't', nil, showTime)
 
