@@ -35,16 +35,7 @@ alias mygcc='gcc -Wall -pedantic -std=c99'
 alias du='du -kh'
 alias df='df -kTh'
 
-# color aliases
-if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-  alias ls='ls --color=auto'
-  #alias dir='dir --color=auto'
-  #alias vdir='vdir --color=auto'
-  alias grep='grep --color=auto'
-  alias fgrep='fgrep --color=auto'
-  alias egrep='egrep --color=auto'
-fi
+alias grep='grep --color=auto'
 
 # ls aliases
 alias ll='ls -alF'
@@ -75,8 +66,6 @@ alias gb='git branch'
 alias gc='git checkout'
 alias gpu='git pull'
 alias gcl='git clone'
-
-alias moshfb='mosh -6 patxu@dev7340.prn2.facebook.com -- tmux'
 
 ####### Functions
 
