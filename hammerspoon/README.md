@@ -51,7 +51,8 @@ these are by far the most used, so they're also the most accessible
 - `caps-t` – view the date and time
 - `caps-p` – see what's playing on Spotify
 
-- a task you do frequently that you think should have a shortcut? let me know!
+<br>
+do you have a task you do frequently that you think should be automated? let me know!
 
 ## Setup
 - ### System Preferences
