@@ -147,10 +147,10 @@ function push(x, y, w, h)
 end
 
 -----------------------------------------------
--- window focusing
+-- window switching
 -----------------------------------------------
 
--- sequential binding for f
+-- sequential binding for s
 hyperS = hs.hotkey.modal.new({}, "F15")
 pressedF = function() hyperS:enter() end
 releasedF = function() end
