@@ -48,5 +48,5 @@ clone vim repo with `git clone --recursive https://github.com/patxu/.vim.git`
 ## git config
 `git config --global credential.helper cache`  
 `git config --global credential.helper 'cache --timeout=3600'`  
-`git config --global user.name "Patrick Xu"`  
+`git config --global user.name patxu`  
 `git config --global user.email patrick.s.xu.17@dartmouth.edu`  
