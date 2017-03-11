@@ -62,8 +62,6 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 alias gm='git commit -m'
 alias gma='git commit -am'
-alias gb='git branch'
-alias gc='git checkout'
 alias gpu='git pull'
 alias gcl='git clone'
 
