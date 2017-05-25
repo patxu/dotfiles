@@ -56,6 +56,7 @@ alias gi='git init'
 alias ga='git add'
 alias gsa='git submodule add'
 alias gp='git push'
+alias gb='git branch'
 alias gl='git log --oneline --graph'
 alias gs='git status'
 alias gd='git diff'
@@ -69,6 +70,12 @@ alias gcl='git clone'
 
 function cd(){
 	builtin cd "$*" && ls -A
+}
+
+# usage: after sourcing this bash file, just type in terminal <name> and your terminal name will update
+#https://askubuntu.com/questions/636944/how-to-change-the-title-of-the-current-terminal-tab-using-only-the-command-line
+function title(){
+  echo -ne "\033]0;$1\a"
 }
 
 function g-(){
@@ -93,4 +100,4 @@ eval $(thefuck --alias)
 # --------------------------------------------------------------------
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/.npm-packages/bin/"
+export PATH="$PATH:$HOME/.npm-packages/bin"
