@@ -72,7 +72,7 @@ function cd(){
 	builtin cd "$*" && ls -A
 }
 
-# usage: after sourcing this bash file, just type in terminal <name> and your terminal name will update
+# usage: after sourcing this bash file, just type in terminal <name-with-no-spaces> and your terminal name will update
 #https://askubuntu.com/questions/636944/how-to-change-the-title-of-the-current-terminal-tab-using-only-the-command-line
 function title(){
   echo -ne "\033]0;$1\a"
