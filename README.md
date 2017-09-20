@@ -9,35 +9,20 @@ clone vim repo with `git clone --recursive https://github.com/patxu/.vim.git`
 - Dropbox  
 - Spotify  
 - Atom
-- Flux
 
 ## OSX:
 - System Preferences
-  - key delay + repeat
-  - disable desktop autoreorganize
-  - Keyboard Shortcuts
-    - meta-[ and meta-] for desktop switching
-  - sleep, require password in 5 seconds
-  - dark theme
-- Hammerspoon   
-  - setup.sh
-- Karabiner   
-  - private.xml via setup.sh
-  - check "Remap"
-  - for MacOS Sierra, https://sayzlim.net/remapping-hyper-key-macos-sierra/
-- Seil  
-  - change caps lock to key 80  
+  - General: dark theme
+  - Security & Privacy: require password in 5 seconds
+  - disable desktop spaces automatically rearranging
+  - Keyboard
+    - key delay + repeat
+    - Shortcuts: update Quit shortcut for commonly used apps, like Terminal and Google Chrome
+- Hammerspoon & Karabiner-Elements: see `Hammerspoon/`
 - Xcode
-  - Alcatraz (first)
-  - AdjustFontSize
-  - Backlight (setup req.)
-  - GitDiff
-  - OMQuickHelp (setup req.)
-  - XToDo
-  - XVim
-- iTerm
-  - settings
-    - profiles > tab:terminal > silence bell
+- iTerm or Terminal
+    - silence bell
+    - solarized dark theme
 
 ## Windows:
 - Dexpot (only dexgrid plugin)
