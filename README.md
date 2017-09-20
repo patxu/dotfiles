@@ -6,9 +6,11 @@ clone vim repo with `git clone --recursive https://github.com/patxu/.vim.git`
 
 ## all systems:
 - Chrome  
+  - Theme: Slinky Elegant
 - Dropbox  
 - Spotify  
 - Atom
+  - Packages: see `atom/`
 
 ## OSX:
 - System Preferences
