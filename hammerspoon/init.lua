@@ -244,6 +244,13 @@ showTime = function()
 end
 hyperK:bind({}, 't', nil, showTime)
 
+-- Hyper i to show window hints
+showHints = function()
+  hs.hints.windowHints()
+  hyperK.triggered = true
+end
+hyperK:bind({}, 'i', nil, showHints)
+
 -----------------------------------------------
 -- Reload config on write
 -----------------------------------------------
