@@ -66,7 +66,21 @@ alias gma='git commit -am'
 alias gpu='git pull'
 alias gcl='git clone'
 
+alias mosh='mosh -6'
+
 ####### Functions
+
+function m(){
+	if [ $* == 'dev' ]; then
+		echo devvm059.ftw1.facebook.com
+		mosh devvm059.ftw1.facebook.com
+	elif [ $* == 'dev2' ]; then
+		echo devvm2475.lla2.facebook.com
+		mosh devvm2475.lla2.facebook.com
+	else
+		echo no devserver alias found
+	fi
+}
 
 function cd(){
 	builtin cd "$*" && ls -A
