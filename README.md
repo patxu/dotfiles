@@ -6,9 +6,11 @@ clone vim repo with `git clone --recursive https://github.com/patxu/.vim.git`
 
 ## all systems:
 - Chrome  
+  - Theme: Slinky Elegant
 - Dropbox  
 - Spotify  
 - Atom
+  - Packages: see `atom/`
 
 ## OSX:
 - System Preferences
@@ -17,7 +19,9 @@ clone vim repo with `git clone --recursive https://github.com/patxu/.vim.git`
   - disable desktop spaces automatically rearranging
   - Keyboard
     - key delay + repeat
-    - Shortcuts: update Quit shortcut for commonly used apps, like Terminal and Google Chrome
+    - Shortcuts
+      - update Quit shortcut for commonly used apps, like Terminal and Google Chrome
+      - uncheck switch spaces with ctrl+left/right to allow for tab moving Chrome extension
 - Hammerspoon & Karabiner-Elements: see `Hammerspoon/`
 - Xcode
 - iTerm or Terminal
