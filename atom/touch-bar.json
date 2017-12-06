@@ -1,0 +1,14 @@
+[
+  {
+    "type": "button",
+    "label": "//",
+    "clickDispatchAction": "editor:toggle-line-comments",
+    "backgroundColor": "#4899a8"
+  },
+  {
+    "type": "button",
+    "label": "Test",
+    "clickDispatchAction": "pretty-json:JSON",
+    "backgroundColor": "#FDFF00"
+  }
+]

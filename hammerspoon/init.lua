@@ -112,12 +112,26 @@ windowG = function()
 end
 hyperK:bind({}, 'g', nil, windowG)
 
--- hyper ; for right 2/3 window
+-- hyper ; for right 1/3 window
 windowSemi = function()
-  push((1/3),0,(2/3),1)
+  push((2/3),0,(1/3),1)
   hyperK.triggered = true
 end
 hyperK:bind({}, ';', nil, windowSemi)
+
+-- hyper ; for right 2/3 window
+windowApos = function()
+  push((1/3),0,(2/3),1)
+  hyperK.triggered = true
+end
+hyperK:bind({}, 'o', nil, windowApos)
+
+-- hyper i for middle 1/3 window
+windowI = function()
+  push((1/3),0,(1/3),1)
+  hyperK.triggered = true
+end
+hyperK:bind({}, 'i', nil, windowI)
 
 -- hyper w to push window to next monitor
 -- windowPush = function()
@@ -245,11 +259,11 @@ end
 hyperK:bind({}, 't', nil, showTime)
 
 -- Hyper i to show window hints
-showHints = function()
-  hs.hints.windowHints()
-  hyperK.triggered = true
-end
-hyperK:bind({}, 'i', nil, showHints)
+-- showHints = function()
+--   hs.hints.windowHints()
+--   hyperK.triggered = true
+-- end
+-- hyperK:bind({}, 'i', nil, showHints)
 
 -----------------------------------------------
 -- Reload config on write
