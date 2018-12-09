@@ -22,25 +22,12 @@
 # you can simply add code either before or after sourcing the master
 # file.
 
-# command line vim
+# command line to use vim instead of emacs
 set -o vi
 
 
 ####### Aliases
-
-# compiler aliases
-alias mygcc='gcc -Wall -pedantic -std=c99'
-
-# file usage aliases
-alias du='du -kh'
-alias df='df -kTh'
-
 alias grep='grep --color=auto'
-
-# ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # aliases for safety
 alias rm='rm -i'
@@ -60,58 +47,26 @@ alias gb='git branch'
 alias gl='git log --oneline --graph'
 alias gs='git status'
 alias gd='git diff'
-alias gdc='git diff --cached'
 alias gm='git commit -m'
 alias gma='git commit -am'
 alias gpu='git pull'
-alias gcl='git clone'
 
 alias mosh='mosh -6'
 
 ####### Functions
 
-function m(){
-	if [ $* == 'dev' ]; then
-		echo devvm059.ftw1.facebook.com
-		mosh devvm059.ftw1.facebook.com
-	elif [ $* == 'dev2' ]; then
-		echo devvm2475.lla2.facebook.com
-		mosh devvm2475.lla2.facebook.com
-	else
-		echo no devserver alias found
-	fi
-}
-
 function cd(){
 	builtin cd "$*" && ls -A
 }
 
-# usage: after sourcing this bash file, just type in terminal <name-with-no-spaces> and your terminal name will update
-#https://askubuntu.com/questions/636944/how-to-change-the-title-of-the-current-terminal-tab-using-only-the-command-line
-function title(){
-  echo -ne "\033]0;$1\a"
-}
-
-function g-(){
-	ga . && gm "$*" && gp
-}
-
-function rpi() {
-  [[ "${1}" == "ssh" ]] && ssh pi@192.168.1.121
-  [[ "${1}" == "scp" ]] && scp ${2} pi@192.168.1.121:~/
-}
-
+# git flow
+# source ~/code/workspace_settings/bash/git-flow-completion.bash
 if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
 fi
 
-# thefuck tool
-eval $(thefuck --alias)
-
-# git flow
-# source ~/code/workspace_settings/bash/git-flow-completion.bash
 
 # --------------------------------------------------------------------
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/.npm-packages/bin"
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# export PATH="$PATH:$HOME/.npm-packages/bin"
