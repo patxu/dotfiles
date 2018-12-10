@@ -25,7 +25,6 @@
 # command line to use vim instead of emacs
 set -o vi
 
-
 ####### Aliases
 alias grep='grep --color=auto'
 
