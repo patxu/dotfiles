@@ -17,6 +17,7 @@ My personal settings for a new computer.
   - private listening, announcements
 - Atom
   - Sync settings: https://atom.io/packages/sync-settings
+    - Gist: https://gist.github.com/patxu/3686eecbcfe327fad30eff56e24ec819
   - Ondemand: Nuclide ondemand settings
 
 ## OSX:
