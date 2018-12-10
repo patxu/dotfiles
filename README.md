@@ -16,7 +16,8 @@ My personal settings for a new computer.
 - Spotify
   - private listening, announcements
 - Atom
-  - Packages: see `atom/`
+  - Sync settings: https://atom.io/packages/sync-settings
+  - Ondemand: Nuclide ondemand settings
 
 ## OSX:
 - System Preferences
