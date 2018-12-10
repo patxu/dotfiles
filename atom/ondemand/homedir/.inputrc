@@ -1,0 +1,3 @@
+"\C-r": reverse-search-history
+"\C-s": forward-search-history
+set editing-mode vi
