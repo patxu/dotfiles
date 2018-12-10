@@ -56,7 +56,7 @@ do you have a task you do frequently that you think should be automated? let me 
 
 ## Setup
 - ### System Preferences
-  1. remap caps_lock to no action
+  1. Keyboard -> Modifier keys: remap caps lock to no action
     <img src="imgs/sys-prefs.png" width="800px">
 
 - ### Karabiner-Elements
@@ -68,7 +68,8 @@ do you have a task you do frequently that you think should be automated? let me 
 - ### Hammerspoon
   1. download [Hammerspoon](http://www.hammerspoon.org/) or install via brew
     - `brew cask install hammerspoon`
-  1. create a directory `~/.hammerspoon`
-    - `mkdir ~/.hammerspoon`
+    - "Launch Hammerspoon on login"
+    - Uncheck "Show dock/menu icon"
   1. create a [symlink](https://en.wikipedia.org/wiki/Symbolic_link) for `init.lua`
     - ``ln -s `pwd`/init.lua ~/.hammerspoon/init.lua``
+  1. enable Hammerspoon in System Prefs -> Accessibilty

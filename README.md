@@ -1,32 +1,41 @@
 # Settings
 
-Universal settings for setting up a new system.
+My personal settings for a new computer.
 
-clone vim repo with `git clone --recursive https://github.com/patxu/.vim.git`
+1. clone this repo
+2. (optional) clone vim repo: `git clone --recursive https://github.com/patxu/.vim.git`
 
 ## all systems:
 - Chrome  
-  - Theme: Slinky Elegant
-- Dropbox  
-- Spotify  
+  - Sync: everything (?)
+  - Set up Momentum
+- Dropbox
+  - sync 1password files first
+- 1password
+  - update hotkey: cmd-\ -> opt-\
+- Spotify
+  - private listening, announcements
 - Atom
   - Packages: see `atom/`
 
 ## OSX:
 - System Preferences
   - General: dark theme
+  - Dock: auto-minimize
   - Security & Privacy: require password in 5 seconds
-  - disable desktop spaces automatically rearranging
+  - Mission Control: disable desktop spaces automatically rearranging
   - Keyboard
     - key delay + repeat
-    - Shortcuts
-      - update Quit shortcut for commonly used apps, like Terminal and Google Chrome
-      - uncheck switch spaces with ctrl+left/right to allow for tab moving Chrome extension
+  - Night shift
 - Hammerspoon & Karabiner-Elements: see `Hammerspoon/`
+- Aerial
+  - download all, don't stream, add text
 - Xcode
 - iTerm or Terminal
     - silence bell
     - solarized dark theme
+- Customize touch bar: switch Siri for screen lock
+- Messenger: sync to iCloud
 
 ## Windows:
 - Dexpot (only dexgrid plugin)
