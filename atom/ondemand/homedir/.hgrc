@@ -1,0 +1,30 @@
+# example user config (see 'hg help config' for more info)
+[ui]
+# name and email, e.g.
+# username = Jane Doe <jdoe@example.com>
+username = patxu <patxu@fb.com>
+# ignore.local = ~/.hgignore.local
+
+# uncomment to disable color in command output
+# (see 'hg help color' for details)
+# color = never
+
+# uncomment to disable command output pagination
+# (see 'hg help pager' for details)
+# paginate = never
+
+[extensions]
+# uncomment these lines to enable some popular extensions
+# (see 'hg help extensions' for more info)
+#
+# churn =
+
+[alias]
+b = bookmark
+rebaseall = rebase -r 'draft() - master::' -d master
+
+[experimental]
+worddiff = True
+
+[committemplate]
+reviewers = #inclusivity-backend
