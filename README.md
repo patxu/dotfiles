@@ -25,15 +25,19 @@ My personal settings for a new computer.
   - Security & Privacy: require password in 5 seconds
   - Mission Control: disable desktop spaces automatically rearranging
   - Keyboard
-    - key delay + repeat
+    - key delay + repeat: min delay, max repeat speed
+    - Touch bar typing suggestions: off
+    - Autocorrect: off
   - Night shift
+  - Hot Corners
+    - bottom right: screen saver
 - Hammerspoon & Karabiner-Elements: see `Hammerspoon/`
 - Aerial
   - download all, don't stream, add text
 - Xcode
 - iTerm or Terminal
     - silence bell
-    - solarized dark theme
+    - use included solarized dark theme
 - Customize touch bar: switch Siri for screen lock
 - Messenger: sync to iCloud
 
