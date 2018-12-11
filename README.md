@@ -37,11 +37,13 @@ My personal settings for a new computer.
 - Aerial
   - download all, don't stream, add text
 - Xcode
-- iTerm or Terminal
+- iTerm
     - silence bell
     - use included solarized dark theme
 - Customize touch bar: switch Siri for screen lock
-- Messenger: sync to iCloud
+- Messages: sync to iCloud
+- Other
+  - Disable Character Accents: https://www.tekrevue.com/tip/how-to-disable-the-character-accent-menu-in-os-x-mountain-lion/
 
 ## Windows:
 - Dexpot (only dexgrid plugin)
