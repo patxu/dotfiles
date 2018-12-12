@@ -32,6 +32,7 @@ My personal settings for a new computer.
     - Autocorrect: off
   - Night shift
   - Hot Corners
+    - top right: notifications
     - bottom right: screen saver
 - Hammerspoon & Karabiner-Elements: see `Hammerspoon/`
 - Aerial
