@@ -26,9 +26,6 @@ releasedF18 = function()
   end
 end
 
--- Bind the Hyper key
-f18 = hs.hotkey.bind({}, 'F18', pressedF18, releasedF18)
-
 -----------------------------------------------
 -- Window arrangement utilitites
 -----------------------------------------------
@@ -164,39 +161,39 @@ end
 -- window switching
 -----------------------------------------------
 
--- sequential binding for s
-hyperS = hs.hotkey.modal.new({}, "F15")
-pressedF = function() hyperS:enter() end
-releasedF = function() end
-hyperK:bind({}, 's', nil, pressedF, releasedF)
-
-focusWest = function()
-  hs.window.focusWindowWest()
-  hyperK.triggered = true
-  hyperS:exit()
-end
-hyperS:bind({}, 'h', nil, focusWest)
-
-focusEast = function()
-  hs.window.focusWindowEast()
-  hyperK.triggered = true
-  hyperS:exit()
-end
-hyperS:bind({}, 'l', nil, focusEast)
-
-focusNorth = function()
-  hs.window.focusWindowNorth()
-  hyperK.triggered = true
-  hyperS:exit()
-end
-hyperS:bind({}, 'k', nil, focusNorth)
-
-focusSouth = function()
-  hs.window.focusWindowSouth()
-  hyperK.triggered = true
-  hyperS:exit()
-end
-hyperS:bind({}, 'j', nil, focusSouth)
+---- sequential binding for s
+--hyperS = hs.hotkey.modal.new({}, "F15")
+--pressedF = function() hyperS:enter() end
+--releasedF = function() end
+--hyperK:bind({}, 's', nil, pressedF, releasedF)
+--
+--focusWest = function()
+  --hs.window.focusWindowWest()
+  --hyperK.triggered = true
+  --hyperS:exit()
+--end
+--hyperS:bind({}, 'h', nil, focusWest)
+--
+--focusEast = function()
+  --hs.window.focusWindowEast()
+  --hyperK.triggered = true
+  --hyperS:exit()
+--end
+--hyperS:bind({}, 'l', nil, focusEast)
+--
+--focusNorth = function()
+  --hs.window.focusWindowNorth()
+  --hyperK.triggered = true
+  --hyperS:exit()
+--end
+--hyperS:bind({}, 'k', nil, focusNorth)
+--
+--focusSouth = function()
+  --hs.window.focusWindowSouth()
+  --hyperK.triggered = true
+  --hyperS:exit()
+--end
+--hyperS:bind({}, 'j', nil, focusSouth)
 
 -----------------------------------------------
 -- moving windows to other screens
@@ -264,6 +261,15 @@ hyperK:bind({}, 't', nil, showTime)
 --   hyperK.triggered = true
 -- end
 -- hyperK:bind({}, 'i', nil, showHints)
+
+f18 = hs.hotkey.bind({}, 'F18', pressedF18, releasedF18)
+
+-- Hyper s to display the current time
+sleep = function()
+  hs.caffeinate.startScreensaver()
+end
+hyperK:bind({}, 's', nil, sleep)
+
 
 -----------------------------------------------
 -- Reload config on write
