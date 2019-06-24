@@ -20,8 +20,23 @@ cdls(){
   builtin cd "$@" && ls -A
 }
 
-myjf(){
-  hg summary | grep -q 'commit: (clean)' && jf $@
+myarcunit(){
+  ./flib/intern/scripts/inclusivity/arc_unit_mentorship.sh
+}
+
+up(){
+  # no args
+  if [ $# -eq 0 ]; then
+    hg amend --rebase && jf s -n && hg ssl
+
+  # args
+  else
+    hg amend --rebase && jf s "$@" && hg ssl
+  fi
+}
+
+get(){
+  jf get "$@" | grep 'hg rebase.*' -o | pbcopy; echo "Rebase command copied to clipboard: `pbpaste`"
 }
 
 # aliases for safety

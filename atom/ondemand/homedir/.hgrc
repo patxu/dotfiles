@@ -27,4 +27,4 @@ rebaseall = rebase -r 'draft() - master::' -d master
 worddiff = True
 
 [committemplate]
-reviewers = #inclusivity-backend
+reviewers = #mentorship-backend
