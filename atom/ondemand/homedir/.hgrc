@@ -27,4 +27,5 @@ rebaseall = rebase -r 'draft() - master::' -d master
 worddiff = True
 
 [committemplate]
-reviewers = #mentorship-backend
+title = [Midgard]
+reviewers = bjaeger
