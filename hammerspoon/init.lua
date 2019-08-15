@@ -270,6 +270,17 @@ sleep = function()
 end
 hyperK:bind({}, 's', nil, sleep)
 
+-- Hyper n to unminimize (undo cmd-m)
+unMinimize = function()
+  local app = hs.application.frontmostApplication()
+  for k,v in pairs(app:allWindows()) do
+    if v:isMinimized() then
+      v:unminimize()
+      return
+    end
+  end
+end
+hyperK:bind({}, 'n', nil, unMinimize)
 
 -----------------------------------------------
 -- Reload config on write
