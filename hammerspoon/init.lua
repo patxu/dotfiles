@@ -280,7 +280,7 @@ unMinimize = function()
     end
   end
 end
-hyperK:bind({}, 'n', nil, unMinimize)
+hyperK:bind({}, 'm', nil, unMinimize)
 
 -----------------------------------------------
 -- Reload config on write
