@@ -7,8 +7,8 @@ hyperK = hs.hotkey.modal.new({}, "F17")
 hyper = {"cmd", "alt", "shift", "ctrl"}
 
 -- Bind 'm' for hyper-m < > commands
-hyperK:bind({}, 'm', nil, function()
-  hs.eventtap.keyStroke(hyper, 'm')
+hyperK:bind({}, 't', nil, function()
+  hs.eventtap.keyStroke(hyper, 't')
 end)
 
 -- Enter Hyper Mode when F18 (Hyper/Capslock) is pressed
@@ -203,7 +203,7 @@ end
 hyperM = hs.hotkey.modal.new({}, "F14")
 pressedM = function() hyperM:enter() end
 releasedM = function() end
-hyperK:bind({}, 'm', nil, pressedM, releasedM)
+hyperK:bind({}, 't', nil, pressedM, releasedM)
 
 throwWest = function()
   local win = hs.window.focusedWindow()
@@ -249,11 +249,11 @@ end
 hyperK:bind({}, 'p', nil, displayCurrentTrack)
 
 -- Hyper t to display the current time
-showTime = function()
-  hs.alert.show(os.date("%A %b %d - %I:%M%p"), 2)
-  hyperK.triggered = true
-end
-hyperK:bind({}, 't', nil, showTime)
+-- showTime = function()
+--   hs.alert.show(os.date("%A %b %d - %I:%M%p"), 2)
+--   hyperK.triggered = true
+-- end
+-- hyperK:bind({}, 't', nil, showTime)
 
 -- Hyper i to show window hints
 -- showHints = function()

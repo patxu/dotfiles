@@ -27,11 +27,11 @@ myarcunit(){
 up(){
   # no args
   if [ $# -eq 0 ]; then
-    hg amend --rebase && jf s -n && hg ssl
+    hg amend --rebase && jf s -n
 
   # args
   else
-    hg amend --rebase && jf s "$@" && hg ssl
+    hg amend --rebase && jf s "$@"
   fi
 }
 

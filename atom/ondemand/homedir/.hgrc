@@ -21,11 +21,15 @@ username = patxu <patxu@fb.com>
 
 [alias]
 b = bookmark
-rebaseall = rebase -r 'draft() - master::' -d master
+rebaseall = rebase -r 'draft() - master::' -d .
 
 [experimental]
 worddiff = True
 
 [committemplate]
-title = [Midgard]
-reviewers = bjaeger
+title = {myparenttitleprefix}
+reviewers = maps_product_infra, {myparentreviewers} 
+subscribers = \n\nTasks: {myparenttasks}
+
+[hint]
+ack = sl-short-headers commitcloud-old-commits undo
