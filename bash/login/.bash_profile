@@ -8,16 +8,6 @@ if [ -f /opt/facebook/hg/share/scm-prompt.sh ]; then
   source /opt/facebook/hg/share/scm-prompt.sh
 fi
 
-## for remote android development 11/8/18
-export DEVSERVER=our.patxu.sb.facebook.com
-
-## new stuff added by patxu 9/19/17
-
-# This file is sourced by bash in every login shell.  After editing
-# this file, type `source .bash_profile' in any shell which is already
-# open and in which you want the changes to take effect.  For more
-# info type `man bash'.
-
 export EDITOR=vim
 
 ###### Sources

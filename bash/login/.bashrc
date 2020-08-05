@@ -52,6 +52,8 @@ alias gpu='git pull'
 
 alias mosh='mosh -6'
 
+alias history='history 15'
+
 ####### Functions
 
 function cd(){

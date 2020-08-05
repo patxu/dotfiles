@@ -32,4 +32,4 @@ reviewers = maps_product_infra, {myparentreviewers}
 subscribers = \n\nTasks: {myparenttasks}
 
 [hint]
-ack = sl-short-headers commitcloud-old-commits undo
+ack = sl-short-headers commitcloud-old-commits undo graph-renderer
