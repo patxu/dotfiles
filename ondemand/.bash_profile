@@ -9,14 +9,10 @@ if [ -f ~/.bashrc ]; then
   source ~/.bashrc
 fi
 
-# User specific environment and startup programs
-
-# export EDITOR=vim
 export PATH=$PATH:$HOME/bin
 
+###### Custom Prompt
 shopt -s checkwinsize
-
-set -o vi
 
 RED="\[$(tput setaf 1)\]"
 CYAN="\[$(tput setaf 6)\]"

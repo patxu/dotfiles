@@ -1,8 +1,8 @@
 #!/bin/bash
-# Ondemand doesn't yet support symlinks
 
-ln -s ~/code/dotfiles/atom/ondemand/homedir/.bash_profile ~/.atom/ondemand/homedir/.bash_profile
-ln -s ~/code/dotfiles/atom/ondemand/homedir/.bashrc ~/.atom/ondemand/homedir/.bashrc
-ln -s ~/code/dotfiles/atom/ondemand/homedir/.hgrc ~/.atom/ondemand/homedir/.hgrc
-ln -s ~/code/dotfiles/atom/ondemand/homedir/.hphpd.ini ~/.atom/ondemand/homedir/.hphpd.ini
-ln -s ~/code/dotfiles/atom/ondemand/homedir/.inputrc ~/.atom/ondemand/homedir/.inputrc
+ln -sf /Users/patxu/code/dotfiles/ondemand/.bash_profile ~/.ondemand/homedir/.bash_profile
+ln -sf /Users/patxu/code/dotfiles/ondemand/.bashrc ~/.ondemand/homedir/.bashrc
+ln -sf /Users/patxu/code/dotfiles/bash/login/.bashrc_common ~/.ondemand/homedir/.bashrc_common
+ln -sf /Users/patxu/code/dotfiles/ondemand/.hgrc ~/.ondemand/homedir/.hgrc
+ln -sf /Users/patxu/code/dotfiles/ondemand/.hphpd.ini ~/.ondemand/homedir/.hphpd.ini
+ln -sf /Users/patxu/code/dotfiles/ondemand/.inputrc ~/.ondemand/homedir/.inputrc

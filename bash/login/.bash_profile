@@ -8,8 +8,6 @@ if [ -f /opt/facebook/hg/share/scm-prompt.sh ]; then
   source /opt/facebook/hg/share/scm-prompt.sh
 fi
 
-export EDITOR=vim
-
 ###### Sources
 source ~/.bashrc
 source ~/.git-prompt.sh
@@ -24,7 +22,6 @@ export PS1="$RED\W$GREEN\$(__git_ps1)$RED $ $RESET"
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export TERM="xterm-color"
-# export PATH=$PATH:~/Library/Android/sdk/platform-tools
 
 # added by setup_fb4a.sh
 export ANDROID_SDK=/opt/android_sdk

@@ -1,0 +1,19 @@
+# .bashrc
+# command line to use vim instead of emacs
+set -o vi
+export EDITOR=vim
+
+# alias for ease of use
+alias e='exit'
+
+####### Aliases
+# aliases for safety
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -p'
+
+####### Functions
+function cd(){
+	builtin cd "$*" && ls -A
+}
