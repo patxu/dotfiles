@@ -17,24 +17,6 @@ if [ -f /usr/facebook/ops/rc/master.bashrc ]; then
   . /usr/facebook/ops/rc/master.bashrc
 fi
 
-
-## Custom stuff
-
-up(){
-  # no args
-  if [ $# -eq 0 ]; then
-    hg amend --rebase && jf s -n
-
-  # args
-  else
-    hg amend --rebase && jf s "$@"
-  fi
-}
-
-get(){
-  jf get "$@" | grep 'hg rebase.*' -o | pbcopy; echo "Rebase command copied to clipboard: `pbpaste`"
-}
-
 # shopt -s histappend
 # HISTCONTROL=ignoreboth:erasedups
 # HISTIGNORE="?:??:clear:reset:history:exit*"
