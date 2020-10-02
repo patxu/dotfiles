@@ -43,6 +43,11 @@ My personal settings for a new computer.
     - use included solarized dark theme
 - Customize touch bar: switch Siri for screen lock
 - Messages: sync to iCloud
+- Rectangle: window drag-to-snap
+- Contexts: better alt-tabbing
+- Divvy: window resize-to-grid
+- Alfred: better spotlight, clipboard history
+- Stay: restore windows as displays are reconnected (testing)
 - Other
   - Disable Character Accents: https://www.tekrevue.com/tip/how-to-disable-the-character-accent-menu-in-os-x-mountain-lion/
 
