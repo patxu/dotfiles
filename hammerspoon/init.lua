@@ -102,9 +102,9 @@ windowZ = function()
 end
 hyperK:bind({}, 'z', nil, windowZ)
 
--- hyper g for left 1/3 window
+-- hyper g for left 2/5 window
 windowG = function()
-  push(0,0,(1/3),1)
+  push(0,0,(2/5),1)
   hyperK.triggered = true
 end
 hyperK:bind({}, 'g', nil, windowG)
@@ -118,7 +118,7 @@ hyperK:bind({}, ';', nil, windowSemi)
 
 -- hyper ; for right 2/3 window
 windowApos = function()
-  push((1/3),0,(2/3),1)
+  push((2/5),0,(3/5),1)
   hyperK.triggered = true
 end
 hyperK:bind({}, 'o', nil, windowApos)
