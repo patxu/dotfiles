@@ -17,9 +17,21 @@ if [ -f /usr/facebook/ops/rc/master.bashrc ]; then
   . /usr/facebook/ops/rc/master.bashrc
 fi
 
-# shopt -s histappend
-# HISTCONTROL=ignoreboth:erasedups
-# HISTIGNORE="?:??:clear:reset:history:exit*"
-# HISTSIZE=100000
-# HISTFILESIZE=100000
-# PROMPT_COMMAND='\history -a; \history -c; \history -r;'
+if [ -f /usr/share/scm/scm-prompt.sh ]; then
+  source /usr/share/scm/scm-prompt.sh
+fi
+
+export PATH=$PATH:$HOME/bin
+
+###### Custom Prompt
+shopt -s checkwinsize
+
+RED="\[$(tput setaf 1)\]"
+CYAN="\[$(tput setaf 6)\]"
+GREEN="\[$(tput setaf 2)\]"
+BLUE="\[\033[0;34m\]"
+RESET="\[$(tput sgr0)\]"
+
+export PS1="$RED\w$BLUE\$(_scm_prompt ' (%s)')$RED \$ $RESET"
+
+unset USERNAME
