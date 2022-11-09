@@ -1,3 +1,6 @@
+# NOTE this is no longer synced to ondemands. Edit dot files directly and they
+# will sync with dotsync2
+
 # example user config (see 'hg help config' for more info)
 [ui]
 # name and email, e.g.
@@ -28,7 +31,7 @@ worddiff = True
 
 [committemplate]
 title = {myparenttitleprefix}
-reviewers = maps_product_infra, {myparentreviewers} 
+reviewers = ar_placement, {myparentreviewers} 
 subscribers = \n\nTasks: {myparenttasks}
 
 [hint]

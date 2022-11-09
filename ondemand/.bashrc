@@ -1,6 +1,39 @@
 # .bashrc
 
-source ~/.bashrc_common
+# command line to use vim instead of emacs
+set -o vi
+export EDITOR=vim
+
+# alias for ease of use
+alias e='exit'
+
+####### Aliases
+# aliases for safety
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -p'
+
+####### Functions
+# function cd(){
+	# builtin cd "$*" && ls -A
+# }
+
+## Mercurial
+get(){
+  jf get --rebase "$@"
+}
+
+up(){
+  # no args
+  if [ $# -eq 0 ]; then
+    hg amend --rebase && jf s -n
+
+  # args
+  else
+    hg amend --rebase && jf s "$@"
+  fi
+}
 
 # Unlike earlier versions, Bash4 sources your bashrc on non-interactive shells.
 # The line below prevents anything in this file from creating output that will

@@ -1,4 +1,4 @@
------------------------------------------------
+---------------------------------------------- 
 -- Hyper Key Setup
 -----------------------------------------------
 
@@ -102,9 +102,9 @@ windowZ = function()
 end
 hyperK:bind({}, 'z', nil, windowZ)
 
--- hyper g for left 2/5 window
+-- hyper g for left 1/3 window
 windowG = function()
-  push(0,0,(2/5),1)
+  push(0,0,(1/3),1)
   hyperK.triggered = true
 end
 hyperK:bind({}, 'g', nil, windowG)
@@ -116,9 +116,9 @@ windowSemi = function()
 end
 hyperK:bind({}, ';', nil, windowSemi)
 
--- hyper ; for right 2/3 window
+-- hyper o for right 2/3 window
 windowApos = function()
-  push((2/5),0,(3/5),1)
+  push((1/3),0,(2/3),1)
   hyperK.triggered = true
 end
 hyperK:bind({}, 'o', nil, windowApos)
@@ -129,6 +129,20 @@ windowI = function()
   hyperK.triggered = true
 end
 hyperK:bind({}, 'i', nil, windowI)
+
+-- hyper w for top middle 1/3 window
+windowW = function()
+  push((1/3),0,(1/3),(1/2))
+  hyperK.triggered = true
+end
+hyperK:bind({}, 'w', nil, windowW)
+
+-- hyper u for a centered 1/2 window
+windowU = function()
+  push((1/4),0,(1/2),1)
+  hyperK.triggered = true
+end
+hyperK:bind({}, 'u', nil, windowU)
 
 -- hyper w to push window to next monitor
 -- windowPush = function()
@@ -199,43 +213,43 @@ end
 -- moving windows to other screens
 -----------------------------------------------
 
--- sequential binding for m
-hyperM = hs.hotkey.modal.new({}, "F14")
-pressedM = function() hyperM:enter() end
-releasedM = function() end
-hyperK:bind({}, 't', nil, pressedM, releasedM)
+-- sequential binding for t
+hyperT = hs.hotkey.modal.new({}, "F14")
+pressedT = function() hyperT:enter() end
+releasedT = function() end
+hyperK:bind({}, 't', nil, pressedT, releasedT)
 
 throwWest = function()
   local win = hs.window.focusedWindow()
   win:moveOneScreenWest()
   hyperK.triggered = true
-  hyperM:exit()
+  hyperT:exit()
 end
-hyperM:bind({}, 'h', nil, throwWest)
+hyperT:bind({}, 'h', nil, throwWest)
 
 throwEast = function()
   local win = hs.window.focusedWindow()
   win:moveOneScreenEast()
   hyperK.triggered = true
-  hyperM:exit()
+  hyperT:exit()
 end
-hyperM:bind({}, 'l', nil, throwEast)
+hyperT:bind({}, 'l', nil, throwEast)
 
 throwNorth = function()
   local win = hs.window.focusedWindow()
   win:moveOneScreenNorth()
   hyperK.triggered = true
-  hyperM:exit()
+  hyperT:exit()
 end
-hyperM:bind({}, 'k', nil, throwNorth)
+hyperT:bind({}, 'k', nil, throwNorth)
 
 throwSouth = function()
   local win = hs.window.focusedWindow()
   win:moveOneScreenSouth()
   hyperK.triggered = true
-  hyperM:exit()
+  hyperT:exit()
 end
-hyperM:bind({}, 'j', nil, throwSouth)
+hyperT:bind({}, 'j', nil, throwSouth)
 
 -----------------------------------------------
 -- some nice system/program utilities
@@ -264,13 +278,13 @@ hyperK:bind({}, 'p', nil, displayCurrentTrack)
 
 f18 = hs.hotkey.bind({}, 'F18', pressedF18, releasedF18)
 
--- Hyper s to display the current time
+-- Hyper s to sleep
 sleep = function()
   hs.caffeinate.startScreensaver()
 end
 hyperK:bind({}, 's', nil, sleep)
 
--- Hyper n to unminimize (undo cmd-m)
+-- Hyper m to unminimize (undo cmd-m)
 unMinimize = function()
   local app = hs.application.frontmostApplication()
   for k,v in pairs(app:allWindows()) do
