@@ -3,14 +3,11 @@
 My personal settings for a new computer.
 
 1. clone this repo
-2. (optional) clone vim repo: `git clone --recursive https://github.com/patxu/.vim.git`
+2. (optional) within new repo, clone vim repo: `git clone --recursive https://github.com/patxu/.vim.git`
 
 ## all systems:
 - Chrome  
-  - Sync: everything (?)
-  - Set up Momentum
 - Dropbox
-  - sync 1password files first
 - 1password
   - update hotkey: cmd-\ -> opt-\
 - Spotify
@@ -18,9 +15,8 @@ My personal settings for a new computer.
 - Atom
   - Sync settings: https://atom.io/packages/sync-settings
     - Gist: https://gist.github.com/patxu/3686eecbcfe327fad30eff56e24ec819
-  - Ondemand: Nuclide ondemand settings
 
-## OSX:
+## Mac:
 - System Preferences
   - General: dark theme
   - Dock: auto-minimize
@@ -28,7 +24,6 @@ My personal settings for a new computer.
   - Mission Control: disable desktop spaces automatically rearranging
   - Keyboard
     - key delay + repeat: min delay, max repeat speed
-    - Touch bar typing suggestions: off
     - Autocorrect: off
   - Night shift
   - Hot Corners
@@ -36,13 +31,10 @@ My personal settings for a new computer.
     - bottom right: screen saver
 - Hammerspoon & Karabiner-Elements: see `Hammerspoon/`
 - Aerial
-  - download all, don't stream, add text
 - Xcode
 - iTerm
     - silence bell
     - use included solarized dark theme
-- Customize touch bar: switch Siri for screen lock
-- Messages: sync to iCloud
 - Rectangle: window drag-to-snap
 - Contexts: better alt-tabbing
 - Divvy: window resize-to-grid
