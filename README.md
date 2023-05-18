@@ -15,6 +15,11 @@ My personal settings for a new computer.
 - Atom
   - Sync settings: https://atom.io/packages/sync-settings
     - Gist: https://gist.github.com/patxu/3686eecbcfe327fad30eff56e24ec819
+- Notion
+- Transmission
+- Telegram
+- Discord
+- Steam
 
 ## Mac:
 - System Preferences
@@ -29,6 +34,9 @@ My personal settings for a new computer.
   - Hot Corners
     - top right: notifications
     - bottom right: screen saver
+- Calendar
+  - Set default calendar
+  - Turn on timezone support
 - Hammerspoon & Karabiner-Elements: see `Hammerspoon/`
 - Aerial
 - Xcode
@@ -37,20 +45,18 @@ My personal settings for a new computer.
     - use included solarized dark theme
 - Rectangle: window drag-to-snap
 - Contexts: better alt-tabbing
-- Divvy: window resize-to-grid
-- Alfred: better spotlight, clipboard history
-- Stay: restore windows as displays are reconnected (testing)
-- Other
-  - Disable Character Accents: https://www.tekrevue.com/tip/how-to-disable-the-character-accent-menu-in-os-x-mountain-lion/
+- Alfred: better spotlight, clipboard history, snippets, but $$$$ :( 
+- Fresco: multi-monitor wallpaper creation
+- Top Notch: hides the new 14"/16" Macbook notch
+- Maccy: Clipboard history (Alfred alternative)
+- JRE: https://www.java.com/en/download/
 
 ## Windows:
-- Dexpot (only dexgrid plugin)
-- Launchy  
-- Github for Windows  
-- Sharp Keys (for Bootcamp)
+- Microsoft PowerToys
+  - FancyZones: Window layout manager
 
 ## git config
 `git config --global credential.helper cache`  
 `git config --global credential.helper 'cache --timeout=3600'`  
 `git config --global user.name patxu`  
-`git config --global user.email patrick.s.xu.17@dartmouth.edu`  
+`git config --global user.email patrick.s.xu.17@dartmouth.edu`

@@ -12,6 +12,8 @@ alias gs='git status'
 alias gd='git diff'
 alias gm='git commit -m'
 
+alias python=python3
+
 # git flow
 # source ~/code/workspace_settings/bash/git-flow-completion.bash
 if [ -f ~/.git-completion.bash ]; then
