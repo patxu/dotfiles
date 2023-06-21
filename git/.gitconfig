@@ -1,5 +1,6 @@
 [credential]
 	helper = osxkeychain
+	helper = /usr/local/share/gcm-core/git-credential-manager
 [user]
 	email = patrickxu13@gmail.com
 	name = patxu
@@ -21,3 +22,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[credential "https://dev.azure.com"]
+	useHttpPath = true
