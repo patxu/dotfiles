@@ -1,4 +1,4 @@
----------------------------------------------- 
+----------------------------------------------
 -- Hyper Key Setup
 -----------------------------------------------
 
@@ -117,11 +117,18 @@ end
 hyperK:bind({}, ';', nil, windowSemi)
 
 -- hyper o for right 2/3 window
-windowApos = function()
+windowO = function()
   push((1/3),0,(2/3),1)
   hyperK.triggered = true
 end
-hyperK:bind({}, 'o', nil, windowApos)
+hyperK:bind({}, 'o', nil, windowO)
+
+-- hyper u for a left 2/3 window
+windowU = function()
+  push(0,0,(2/3),1)
+  hyperK.triggered = true
+end
+hyperK:bind({}, 'u', nil, windowU)
 
 -- hyper i for middle 1/3 window
 windowI = function()
@@ -136,13 +143,6 @@ windowW = function()
   hyperK.triggered = true
 end
 hyperK:bind({}, 'w', nil, windowW)
-
--- hyper u for a centered 1/2 window
-windowU = function()
-  push((1/4),0,(1/2),1)
-  hyperK.triggered = true
-end
-hyperK:bind({}, 'u', nil, windowU)
 
 -- hyper w to push window to next monitor
 -- windowPush = function()
