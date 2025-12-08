@@ -1,6 +1,5 @@
+echo "bashrc is being sourced, probably by mistake"
 # .bashrc
-
-source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 source ~/.bashrc_common
 
@@ -9,15 +8,19 @@ alias gi='git init'
 alias ga='git add'
 alias gp='git push'
 alias gb='git branch'
-alias gl='git log --oneline --graph'
+# alias gl='git log --oneline --graph'
+alias gl='git log --graph --pretty=git-log-format --abbrev-commit'
 alias gs='git status'
 alias gd='git diff'
-alias gm='git commit -m'
+alias gcm='git commit -m'
+alias gca='git commit --amend --no-edit'
 
 alias python=python3
 
 # git flow
 # source ~/code/workspace_settings/bash/git-flow-completion.bash
-if [ -f ~/.git-completion.bash ]; then
+# if [ -f ~/.git-completion.bash ]; then
 #    . ~/.git-completion.bash
-fi
+# fi
+# export VOLTA_HOME="$HOME/.volta"
+# export PATH="$VOLTA_HOME/bin:$PATH"
