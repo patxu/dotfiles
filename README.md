@@ -50,6 +50,8 @@ My personal settings for a new computer.
 - Top Notch: hides the new 14"/16" Macbook notch
 - Maccy: Clipboard history (Alfred alternative)
 - JRE: https://www.java.com/en/download/
+- Proxy Audio Device: `brew install --cask proxy-audio-device`
+  - To control volume on devices which MacOS doesn't normally support
 
 ## Windows:
 - Microsoft PowerToys
