@@ -22,5 +22,3 @@ alias python=python3
 # if [ -f ~/.git-completion.bash ]; then
 #    . ~/.git-completion.bash
 # fi
-# export VOLTA_HOME="$HOME/.volta"
-# export PATH="$VOLTA_HOME/bin:$PATH"

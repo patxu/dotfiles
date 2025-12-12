@@ -11,9 +11,9 @@ My personal settings for a new computer.
 - 1Password
   - update hotkey: cmd-\ -> opt-\
 - Spotify
-  - private listening, announcements
+  - settings: private listening, announcements
 - Notion
-- qBitorrent
+- qBittorrent
 - Telegram
 - Discord
 - Steam
@@ -40,13 +40,13 @@ My personal settings for a new computer.
 - iTerm
     - silence bell
     - use included solarized dark theme
-- Rectangle: window drag-to-snap
 - Contexts: better alt-tabbing
 - Alfred: better spotlight, clipboard history, snippets, but $$$$ :( 
-- Fresco: multi-monitor wallpaper creation
 - Top Notch: hides the new 14"/16" Macbook notch
+- Homerow: navigate with your keyboard
 - Maccy: Clipboard history (Alfred alternative)
 - JRE: https://www.java.com/en/download/
+- zNotch: toggle Macbook notch
 - Proxy Audio Device: `brew install --cask proxy-audio-device`
   - To control volume on devices which MacOS doesn't normally support
 
