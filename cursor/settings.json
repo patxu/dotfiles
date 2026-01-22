@@ -1,0 +1,268 @@
+{
+  "[python]": {
+    "editor.formatOnType": true,
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "editor.minimap.autohide": true,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "vim.useSystemClipboard": true,
+  "window.restoreWindows": "preserve",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "python.autoComplete.extraPaths": [],
+  "sqlite.setupDatabase": {},
+  "python.analysis.extraPaths": [],
+  "workbench.editorAssociations": {
+    "*.db": "sqlite-viewer.option",
+    "*.parquet": "parquetViewer.parquetViewer"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "vsicons.dontShowNewVersionMessage": true,
+  "cSpell.userWords": [
+    "avsc",
+    "behaviour",
+    "bfile",
+    "callsites",
+    "Chakra",
+    "checkpointing",
+    "clob",
+    "Dataplane",
+    "DATETIME",
+    "Dbricks",
+    "DBSQL",
+    "dctx",
+    "Discoverability",
+    "FILEFORMAT",
+    "Formkit",
+    "Hasura",
+    "Healthcheck",
+    "hightouch",
+    "hightouchio",
+    "IDBSQL",
+    "INCRBY",
+    "LOOKBACK",
+    "Matchboosted",
+    "matchbooster",
+    "matchboosting",
+    "millis",
+    "MITM",
+    "mytable",
+    "nclob",
+    "nvarchar",
+    "odbc",
+    "oracledb",
+    "patxu",
+    "privatelink",
+    "reinitializing",
+    "resyncing",
+    "resyncs",
+    "RETRIABLE",
+    "rowid",
+    "ROWNUM",
+    "Schedulable",
+    "subquery",
+    "TBLPROPERTIES",
+    "TIMESTAMPTZ",
+    "tinyint",
+    "trino",
+    "uids",
+    "UNNEST",
+    "Upsert",
+    "upserted",
+    "upserts",
+    "urowid",
+    "VARCHAR",
+    "zapatos"
+  ],
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "redhat.telemetry.enabled": true,
+  "vs-kubernetes": {
+    "vscode-kubernetes.helm-path.mac": "/Users/patxu/.vs-kubernetes/tools/helm/darwin-arm64/helm",
+    "vscode-kubernetes.minikube-path.mac": "/Users/patxu/.vs-kubernetes/tools/minikube/darwin-arm64/minikube",
+    "vs-kubernetes.crd-code-completion": "enabled"
+  },
+  "git.enableSmartCommit": true,
+  "editor.find.seedSearchStringFromSelection": "selection",
+  "typeChallenges.workspaceFolder": "/Users/patxu/code/type_challenges",
+  "github.copilot.advanced": {},
+  "terminal.external.osxExec": "iTerm.app",
+  "eslint.format.enable": true,
+  "editor.minimap.enabled": false,
+  "cSpell.dictionaryDefinitions": [],
+  "cSpell.diagnosticLevel": "Hint",
+  "cSpell.showStatus": false,
+  "editor.tokenColorCustomizations": {
+    "[*Light*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#000"
+          }
+        }
+      ]
+    },
+    "[*Dark*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#fff"
+          }
+        }
+      ]
+    },
+    "textMateRules": [
+      {
+        "scope": "ref.license",
+        "settings": {
+          "foreground": "#cccccc"
+        }
+      },
+      {
+        "scope": "ref.snippet",
+        "settings": {
+          "foreground": "#606060"
+        }
+      }
+    ]
+  },
+  "scm.diffDecorations": "gutter",
+  "inlineChat.showDiff": false,
+  "workbench.editor.tabSizing": "shrink",
+  "jestrunner.runOptions": ["--forceExit"],
+  "files.trimTrailingWhitespace": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "terminal.integrated.fontFamily": "Meslo LG L for Powerline",
+  "githubPullRequests.pullBranch": "never",
+  "data.preview.create.json.files": true,
+  "terminal.integrated.scrollback": 5000,
+  "workbench.panel.defaultLocation": "right",
+  "extensions.experimental.affinity": {
+    "ms-toolsai.jupyter": 1,
+    "ms-toolsai.jupyter-renderers": 1,
+    "ms-python.python": 1,
+    "ms-python.vscode-pylance": 1
+  },
+  "workbench.tree.enableStickyScroll": true,
+  "editor.stickyScroll.enabled": true,
+  "githubPullRequests.terminalLinksHandler": "github",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  "[sql]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+  },
+  "debug.console.closeOnEnd": true,
+  "eslint.execArgv": null,
+  "eslint.codeActionsOnSave.rules": null,
+  "editor.formatOnSave": true,
+  "eslint.rules.customizations": [
+    {
+      "rule": "no-cross-destination-imports",
+      "severity": "off"
+    }
+  ],
+  "editor.accessibilitySupport": "off",
+  "editor.lineNumbers": "relative",
+  "vim.smartRelativeLine": true,
+  "gitlens.blame.separateLines": false,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "markdown-preview-enhanced.scrollSync": true,
+  "eslint.nodeEnv": "",
+  "sql-formatter.uppercase": true,
+  "scm.workingSets.enabled": true,
+  "git.autofetch": true,
+  "workbench.activityBar.orientation": "vertical",
+  "security.promptForLocalFileProtocolHandling": false,
+  "eslint.options": {},
+  "notebook.codeActionsOnSave": {},
+  "eslint.codeActionsOnSave.mode": "problems",
+  "editor.cursorSurroundingLines": 3,
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
+  "workbench.preferredDarkColorTheme": "Sapphire",
+  "workbench.preferredLightColorTheme": "Solarized Light",
+  "workbench.settings.applyToAllProfiles": [],
+  "typescript.preferGoToSourceDefinition": true,
+  "javascript.preferGoToSourceDefinition": true,
+  "debug.toolBarLocation": "docked",
+  "workbench.preferredHighContrastColorTheme": "Sapphire",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.colorTheme": "Solarized Light",
+  "window.autoDetectHighContrast": false,
+  "window.autoDetectColorScheme": true,
+  "window.systemColorTheme": "auto",
+  "cSpell.enabledNotifications": {
+    "Average Word Length too Long": false,
+    "Lines too Long": false,
+    "Maximum Word Length Exceeded": false
+  },
+  "todohighlight.keywords": ["TODO"],
+  "todohighlight.defaultStyle": {
+    // "color": "red",
+    "backgroundColor": "yellow",
+    "overviewRulerColor": "yellow"
+    // "cursor": "pointer"
+    // "border": "1px solid #eee",
+    // "borderRadius": "2px",
+    // "isWholeLine": true
+    //other styling properties goes here ...
+  },
+  // possible improvement perf changes
+  "typescript.tsserver.maxTsServerMemory": 4096,
+  "typescript.tsserver.nodePath": "./node_modules/.pnpm/typescript",
+  "typescript.tsserver.watchOptions": {
+    "watchFile": "useFsEvents",
+    "watchDirectory": "useFsEvents",
+    "fallbackPolling": "dynamicPriorityPolling"
+  },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+    "editor.insertSpaces": false,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "search.exclude": {
+    "**/node_modules": false
+  },
+  // end possible improvement perf changes
+  "jest.useJest30": true,
+  "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "typescript.experimental.useTsgo": true,
+  "eslint.enable": false,
+  "terminal.integrated.shellIntegration.enabled": false,
+  "terminal.integrated.suggest.enabled": true,
+  "git.blame.editorDecoration.enabled": false,
+  "workbench.editor.enablePreview": false
+}

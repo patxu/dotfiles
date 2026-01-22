@@ -1,0 +1,65 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.navigateLeft"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.navigateRight"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.navigateUp"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.navigateDown"
+  },
+  {
+    "key": "ctrl+alt+w down",
+    "command": "-console.log.wrap.down",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "cmd+l",
+    "command": "-expandLineSelection",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "cmd+k cmd+q",
+    "command": "-workbench.action.navigateToLastEditLocation"
+  },
+  {
+    "key": "shift shift",
+    "command": "workbench.action.showAllSymbols"
+  },
+  {
+    "key": "cmd+i",
+    "command": "composerMode.agent"
+  },
+  {
+    "key": "shift+cmd+[",
+    "command": "composer.previousChatTab",
+    "when": "composerFocused && !editorTextFocus"
+  },
+  {
+    "key": "cmd+[",
+    "command": "-composer.previousChatTab",
+    "when": "composerFocused && !editorTextFocus"
+  },
+  {
+    "key": "shift+cmd+]",
+    "command": "composer.nextChatTab",
+    "when": "composerFocused && !editorTextFocus"
+  },
+  {
+    "key": "cmd+]",
+    "command": "-composer.nextChatTab",
+    "when": "composerFocused && !editorTextFocus"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "workbench.action.toggleEditorWidths"
+  }
+]
