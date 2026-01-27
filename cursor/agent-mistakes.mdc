@@ -1,0 +1,30 @@
+---
+description: Log of agent mistakes to avoid - covers git operations, branch switching, and handling uncommitted changes
+alwaysApply: true
+---
+# Cursor Agent Mistakes
+
+A log of mistakes to learn from and avoid in the future.
+
+## Instructions
+
+When you make a mistake or do something suboptimal that the user corrects or points out, ask: "Would you like me to add this to the agent-mistakes log?" If yes, add a new entry following the format below (date, context, mistake, better approach, lesson).
+
+---
+
+## 2025-01-27: Checked out new branch with uncommitted changes in working tree
+
+**Context:** User asked me to create a PR on a separate branch, explicitly mentioning they had local changes they didn't want to conflict.
+
+**Mistake:** I ran `git checkout -b new-branch origin/master` which switches the local checkout. If the user had unstaged changes to files that differed between branches, this could have failed or overwritten their work.
+
+**Better approach:**
+1. Ask the user to stash first, or
+2. Use `git worktree` to work in a separate directory, or
+3. Push directly to a new remote branch without switching locally:
+   ```bash
+   git push origin origin/master:refs/heads/new-branch-name
+   ```
+   Then make changes via GitHub API or ask user to switch when ready.
+
+**Lesson:** When user mentions uncommitted changes, avoid any `git checkout` or branch switching operations without explicitly warning them first.
