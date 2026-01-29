@@ -28,3 +28,34 @@ When you make a mistake or do something suboptimal that the user corrects or poi
    Then make changes via GitHub API or ask user to switch when ready.
 
 **Lesson:** When user mentions uncommitted changes, avoid any `git checkout` or branch switching operations without explicitly warning them first.
+
+---
+
+## Running backend Jest tests
+
+**Command template:**
+```bash
+cd packages/backend && CI=false POSTGRES_HOST=localhost HASURA_GRAPHQL_ENDPOINT=http://localhost:8080/ npx jest <test-file> -t 'test name'
+```
+
+**Example:**
+```bash
+cd packages/backend && CI=false POSTGRES_HOST=localhost HASURA_GRAPHQL_ENDPOINT=http://localhost:8080/ npx jest core/enrichment/pull-model.test.ts -t 'should handle merge column'
+```
+
+**Why these env vars:**
+- `CI=false` - Uses `.env` (localhost) instead of `.env.ci` (Docker container names)
+- `POSTGRES_HOST=localhost` - Connects to postgres container exposed on localhost
+- `HASURA_GRAPHQL_ENDPOINT=http://localhost:8080/` - Connects to Hasura container exposed on localhost
+
+**Additional flags:**
+- `--globalSetup= --globalTeardown=` - Skip global setup/teardown if you get database sequence errors or `fkill` errors
+- `--no-coverage` - Skip coverage for faster runs
+
+**Sandbox permissions:**
+- Request `network` permissions when running tests (tests need to connect to localhost Docker services)
+
+**Common mistakes to avoid:**
+- Don't overcomplicate with explicit config paths like `-c 'packages/backend/core/jest.config.js'`
+- Don't try other env vars like `DB_HOST` or `PGHOST` - the codebase uses `POSTGRES_HOST`
+- Run from `packages/backend` directory, not the repo root
