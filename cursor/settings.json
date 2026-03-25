@@ -31,6 +31,7 @@
   },
   "vsicons.dontShowNewVersionMessage": true,
   "cSpell.userWords": [
+    "acxiom",
     "avsc",
     "behaviour",
     "bfile",
@@ -263,6 +264,7 @@
   "eslint.enable": false,
   "terminal.integrated.shellIntegration.enabled": false,
   "terminal.integrated.suggest.enabled": true,
-  "git.blame.editorDecoration.enabled": false,
-  "workbench.editor.enablePreview": false
+  "git.blame.editorDecoration.enabled": true,
+  "workbench.editor.enablePreview": false,
+  "gitlens.currentLine.enabled": false
 }

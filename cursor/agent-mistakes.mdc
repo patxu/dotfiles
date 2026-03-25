@@ -8,7 +8,7 @@ A log of mistakes to learn from and avoid in the future.
 
 ## Instructions
 
-When you make a mistake or do something suboptimal that the user corrects or points out, ask: "Would you like me to add this to the agent-mistakes log?" If yes, add a new entry following the format below (date, context, mistake, better approach, lesson).
+When you make a mistake or do something suboptimal — whether the user corrects you, or you catch it yourself — always ask: "Would you like me to add this to the agent-mistakes log?" If yes, add a new entry following the format below (date, context, mistake, better approach, lesson).
 
 ---
 
@@ -55,7 +55,341 @@ cd packages/backend && CI=false POSTGRES_HOST=localhost HASURA_GRAPHQL_ENDPOINT=
 **Sandbox permissions:**
 - Request `network` permissions when running tests (tests need to connect to localhost Docker services)
 
+**Important: `core/` tests must run from `packages/backend/core`:**
+- Tests under `packages/backend/core/` (e.g. enrichment E2E tests) have their own Jest config and `.env.local` with Snowflake credentials and schema settings
+- Running these from `packages/backend` will pick up the wrong config and fail with errors like `This session does not have a current schema`
+- Command for core tests: `cd packages/backend/core && npx jest enrichment/enrichment-e2e.test.ts`
+- Tests under `packages/backend/lib/` can run from `packages/backend`
+
 **Common mistakes to avoid:**
 - Don't overcomplicate with explicit config paths like `-c 'packages/backend/core/jest.config.js'`
 - Don't try other env vars like `DB_HOST` or `PGHOST` - the codebase uses `POSTGRES_HOST`
-- Run from `packages/backend` directory, not the repo root
+- Run from the correct subdirectory (`packages/backend` for lib tests, `packages/backend/core` for core tests), not the repo root
+
+---
+
+## 2026-02-06: Failed to lint after merging upstream changes
+
+**Context:** After renaming/removing function parameters across multiple files, I merged latest master. The merge completed with no git conflicts.
+
+**Mistake:** I reported the merge as successful without running any lint or type checks. Master had added new test code that called the old interface (with the removed `latestFullEnrichedAt` parameter), which compiled fine before my changes but was now broken. The user had to catch and fix it manually.
+
+**Better approach:** Always run lint checks (`npx biome check` or `ReadLints`) on changed files after a merge/rebase, even if git reports no conflicts. A conflict-free merge does not mean the result is semantically correct — new code from upstream may reference symbols you renamed or removed.
+
+**Lesson:** Treat a merge the same as any other code change: verify correctness with lint/typecheck before reporting success.
+
+---
+
+## 2026-02-09: Stated incorrect third-party behavior without citing documentation
+
+**Context:** User asked whether S3 buckets could be accessed from the wrong region. I confidently stated that S3 "transparently handles the redirect" without verifying.
+
+**Mistake:** The claim was partially wrong — S3 returns 301/307 redirects for older regions but returns 400 errors for regions launched after March 2019. I presented this as fact without citing documentation, and had to correct myself after searching.
+
+**Better approach:** When making claims about third-party service behavior (AWS, GCP, external APIs, etc.), always search for and cite official documentation before stating it as fact. Use `WebSearch` or `WebFetch` to find the relevant docs and include a link in the response.
+
+**Lesson:** Never assert third-party behavior from memory alone — always back it up with a documentation link. If you're not sure, say so and search first.
+
+---
+
+## 2026-02-10: Added a bare checkbox with no surrounding context in admin UI
+
+**Context:** User asked to add a toggle to enable/disable writing to the customer warehouse. I added a `<Checkbox>` with a label but no surrounding layout or description, and left the existing description text contradicting the toggle ("The output will be written to the customer's warehouse" — unconditionally).
+
+**Mistake:** The checkbox rendered as a tiny, unlabeled-looking element floating between the text input and the button. It had no visual grouping, no helper text explaining what it controls, and the parent description still claimed writes would always happen. The user had to ask me to fix it.
+
+**Better approach:** When adding a toggle/checkbox to a form:
+1. Update any surrounding description text so it doesn't contradict the new option
+2. Place the checkbox in a proper layout container (`Row`/`Column`) with alignment
+3. Consider adding helper text below the checkbox if the consequence isn't obvious
+4. Review the full section visually — don't just insert an element in isolation
+
+**Lesson:** UI controls need context. Always review the surrounding copy and layout when adding a new form element, not just the element itself.
+
+---
+
+## 2026-02-13: Used wrong sandbox permissions for `gh pr create`, requiring a retry
+
+**Context:** Needed to push a branch and create a PR with `gh pr create`.
+
+**Mistake:** Used `required_permissions: ["full_network"]` for the `gh pr create` command. This failed with a TLS certificate error (`x509: OSStatus -26276`) because the sandboxed environment interferes with certificate verification. Had to retry with `required_permissions: ["all"]`, wasting a round trip.
+
+**Better approach:** Always use `required_permissions: ["all"]` for `gh` CLI commands (especially `gh pr create`, `gh pr view`, etc.). The `gh` CLI needs full system access to properly verify TLS certificates.
+
+**Lesson:** For `gh` CLI commands, always use `required_permissions: ["all"]` — `full_network` is not sufficient.
+
+---
+
+## 2026-02-13: Symlinks in .cursor/rules/ are not discovered by Cursor's rule scanner
+
+**Context:** User had `agent-mistakes.local.mdc` symlinked from their dotfiles repo into `.cursor/rules/`. The file had valid frontmatter with `alwaysApply: true`, but Cursor never applied it to sessions.
+
+**Discovery:** `ls -la` revealed the file was a symlink (`lrwxr-xr-x`), while all other working rule files were regular files. Cursor's rule scanner doesn't follow symlinks when discovering `.mdc` files.
+
+**Fix:** Replaced the symlink with a hardlink (`ln` without `-s`), which appears as a regular file to scanners while still sharing the underlying inode with the dotfiles copy.
+
+**Lesson:** Cursor's `.cursor/rules/` scanner does not follow symlinks. If you need to share rule files from another repo (e.g., dotfiles), use hardlinks instead of symlinks. Hardlinks only work on the same filesystem/volume.
+
+---
+
+## 2026-02-18: Edited file in worktree but never committed, then force-removed the worktree
+
+**Context:** User asked to open a worktree and fix a failing test. I created the worktree, edited the file with the fix, and even tried to run the test. Later the user asked to check out the branch locally instead of in a worktree.
+
+**Mistake:** I force-removed the worktree (`git worktree remove --force`) to free the branch for local checkout, but the fix was only an uncommitted edit in the worktree's working tree. Force-removing destroyed the change. The branch had zero commits with the fix, so checking it out locally gave the user the unfixed file.
+
+**Better approach:** Before removing a worktree that contains work:
+1. Commit the changes in the worktree first (even a WIP commit), OR
+2. Create a patch with `git diff > /tmp/fix.patch` from the worktree before removing it, OR
+3. At minimum, warn the user that uncommitted changes in the worktree will be lost
+
+**Lesson:** Always commit or preserve changes before destroying a worktree. `git worktree remove --force` deletes the entire working directory — uncommitted edits are gone forever.
+
+---
+
+## 2026-02-18: Tried to run backend tests from a worktree without node_modules
+
+**Context:** Needed to run a Jest E2E test to verify a fix. Instead of running from the main repo (which has `node_modules`), I tried running `npx jest` from the worktree directory, which had no dependencies installed.
+
+**Mistake:** The worktree was a fresh checkout with no `node_modules`. Running `npx jest` there downloaded a random global Jest version that couldn't resolve project dependencies (`Cannot find module 'yn'`). I wasted a round trip before falling back to running from the main repo.
+
+**Better approach:** Always run tests from the main repo at `packages/backend/` using the proven command template:
+```bash
+cd packages/backend && CI=false POSTGRES_HOST=localhost HASURA_GRAPHQL_ENDPOINT=http://localhost:8080/ npx jest <test-file> --no-coverage --globalSetup= --globalTeardown=
+```
+Worktrees don't share `node_modules` — never try to run tests from a worktree unless you've explicitly run `pnpm install` there first. If you need to test a file from a worktree, apply the change to the main repo or copy the file over.
+
+**Lesson:** Stick to the known working test command from `packages/backend/` in the main repo. Don't improvise test runners or directories.
+
+---
+
+## 2026-02-18: Merged PR branch into local master instead of just pushing the branch
+
+**Context:** User asked to "merge PR #31988 with local master" and then "push it." I interpreted this as merging the PR branch into the local `master` branch, then trying to push master to the remote.
+
+**Mistake:** I checked out `master`, merged the PR branch into it, then tried to `git push origin master` — which failed because `master` is a protected branch requiring PRs and merge queue. The user just wanted the PR branch updated with latest master and pushed to the remote so CI could run.
+
+**Better approach:**
+1. Never merge into local `master` — it's protected and can't be pushed directly
+2. "Merge with master" means: rebase or merge master *into* the feature branch, not the other way around
+3. "Push it" means: push the feature branch to its remote tracking branch (`git push origin <branch>`)
+4. If the user wants to update a PR branch with master: `git fetch origin master && git merge origin/master` (while on the feature branch), then `git push`
+
+**Lesson:** Never attempt to merge into or push to `master` directly. When the user says "merge with master," they mean incorporate master into the feature branch. When they say "push," they mean push the current/feature branch to its remote.
+
+---
+
+## 2026-02-18: Force-pushed rewritten history onto someone else's PR branch
+
+**Context:** After incorrectly merging the PR branch into local master, user asked to "push it." I pushed local master (which had diverged) to the remote PR branch, which required `--force-with-lease`.
+
+**Mistake:** Ran `git push origin master:mb-merge-col-sync-tests --force-with-lease`, which overwrote the remote PR branch with a completely different history (local master with 30 extra commits + the 3 PR commits rebased on top). This destroyed the original branch history the PR author created.
+
+**Better approach:**
+1. Never force-push to a branch you don't own without explicit user confirmation and a clear reason
+2. If a push requires `--force`, stop and ask why — it almost certainly means the local and remote have diverged in a way that shouldn't be overwritten
+3. "Push it" after merging master into a feature branch should be a normal `git push` (not force), since the merge commit is additive
+
+**Lesson:** If a push requires force, that's a red flag — stop and confirm with the user before proceeding. Never force-push to someone else's PR branch.
+
+---
+
+## 2026-02-19: Unnecessarily squashed and force-pushed when a normal commit would do
+
+**Context:** User asked to wrap a code change in a feature flag. The branch already had a pushed commit on the PR. I needed to add the feature flag wrapper as a follow-up change.
+
+**Mistake:** Instead of making a new commit on top of the existing one and doing a normal `git push`, I squashed all commits into one and force-pushed. This rewrote history that was already visible on the PR, which is disruptive and unnecessary.
+
+**Better approach:** When modifying an already-pushed branch:
+1. Make a new commit on top — don't squash unless the user explicitly asks
+2. Use a normal `git push` — if it requires `--force`, stop and reconsider
+3. Only squash/rewrite history before the first push, or when the user explicitly requests it
+
+**Lesson:** Once commits are pushed to a PR, treat them as published history. Add new commits on top; don't squash and force-push unless explicitly asked.
+
+---
+
+## 2026-02-19: Confused read path with write path in code review
+
+**Context:** Reviewing a PR that streams data *from* a Snowflake enrichment instance and writes matches *to* the customer's warehouse via `insertLargeDatasetFromFilePath`. I stated "The code is correct for the intended rollout (feature-flagged, Snowflake-only)" and downplayed several edge cases as moot because "matchboosting currently only runs on Snowflake warehouses."
+
+**Mistake:** I assumed the customer's warehouse was also Snowflake because the data was *read* from Snowflake. In reality, the read source (enrichment Snowflake) and the write target (customer warehouse) are independent — the customer warehouse could be Snowflake, BigQuery, Databricks, Redshift, or any other supported warehouse. This caused me to incorrectly dismiss real risks (OIDC credential gaps for Databricks/Redshift, S3 staging behavior differences) as theoretical. I also incorrectly referred to the execution environment as "plan-executors" when the enrichment code actually runs on the matchboosting worker.
+
+**Better approach:** When reviewing data pipeline code:
+1. Trace the full data flow — identify the read source and write target separately
+2. Don't assume the write target matches the read source just because one is named
+3. Check what adapter types the write path can encounter, not just what the read path uses
+
+**Lesson:** In ETL/pipeline code, always distinguish between where data comes from and where it goes. The source and destination are often different systems with different capabilities and requirements.
+
+---
+
+## 2026-02-20: Used `npx prettier` instead of `npm run prettier` to verify formatting
+
+**Context:** After adding logging changes to a worktree branch, I ran `npx prettier --check` and `npx biome check` on the changed files. Both passed, so I reported the branch was clean and pushed it. CI then failed on a prettier formatting issue in `sqs.ts`.
+
+**Mistake:** The repo's `npm run prettier` script invokes prettier with `--experimental-cli`, which applies different formatting rules than bare `npx prettier`. By running `npx prettier --check` directly, I used the default CLI behavior and missed the formatting difference that CI would catch. The user had to ask me to investigate CI failures.
+
+**Better approach:** Always use the repo's npm script for lint/format checks, not the bare tool:
+```bash
+npm run prettier -- --check <files>    # correct — uses --experimental-cli
+npx prettier --check <files>           # wrong — different behavior from CI
+```
+Similarly, prefer `npm run lint` or the repo's configured commands over ad-hoc tool invocations whenever a wrapper script exists.
+
+**Lesson:** Always use the repo's npm scripts (`npm run prettier`, `npm run lint`) for pre-commit checks — they may pass flags (like `--experimental-cli`) that change behavior. Running the bare tool directly can give false "all clean" results that CI will reject.
+
+---
+
+## 2026-03-10: Applied GDPR suppression filter at the wrong point in the data pipeline
+
+**Context:** Building a pre-match suppression filter for Match Booster enrichment to exclude GDPR deletion-requested records from 3PD tables. I implemented filtering on the input 3PD tables before they enter the enrichment graph joins.
+
+**Mistake:** I only considered the input side of the pipeline without tracing the full data flow. The enrichment results table uses `CREATE OR REPLACE TABLE` with a `FULL OUTER JOIN` that carries forward old enrichment results via `COALESCE(new, old)`. On incremental runs (the common case), old rows that were enriched *before* a deletion request arrived are carried forward untouched — the pre-match filter only prevents new matches, not retroactive removal. A reviewer caught this: "we don't retroactively remove from the enrichment results table if we don't force a full enrichment right?"
+
+**Better approach:** Before implementing a data filter or transformation, trace the complete data flow end-to-end:
+1. Where does data enter the pipeline? (input)
+2. Where is it stored/accumulated? (state) — especially important for incremental/stateful systems
+3. Where is it read downstream? (output)
+4. For each stage, ask: does my filter need to apply here too?
+
+For Match Booster specifically: data enters via 3PD table joins → is accumulated in the enrichment results table (with incremental carry-forward) → is copied to S3 → is read by syncs. A suppression filter on the input alone doesn't clean up data already in the accumulated state.
+
+**Lesson:** When adding filtering to a data pipeline, always consider the full lifecycle — especially stateful/incremental systems where historical data is carried forward. Filter at the point closest to the consumer, or at every accumulation point, not just at the input.
+
+---
+
+## 2026-03-10: Accidentally deleted an existing comment when refactoring surrounding code
+
+**Context:** Threading a `region` parameter through `handleEnrichment` in `job.ts`. I needed to move the `if (!model)` null check earlier in the function (before a new workspace lookup). The `featureFlagContext` block had a comment explaining why the user context was used.
+
+**Mistake:** When I rewrote the `handleEnrichment` function to reorder the null check and add the workspace lookup, I dropped an existing comment (`// Using the user context so we can keep track of the modelId and workspaceID // in one context (since modelId only lives in the user context).`) from the `featureFlagContext` block. The user had to notice this in the PR diff and restore it manually.
+
+**Better approach:** When rewriting or restructuring a code block, explicitly check that all comments from the original are preserved in the new version. Comments are invisible to linters and type checkers, so they're the easiest thing to accidentally drop.
+
+**Lesson:** After rewriting a block of code, scan the original for comments and verify each one is present in the new version.
+
+---
+
+## 2026-03-10: Incorrectly claimed existing code already had DISTINCT
+
+**Context:** User asked about the `DISTINCT` keyword in a SQL query in `matchboosting.ts` that I had modified. I explained the DISTINCT was necessary due to LEFT JOIN cartesian products and claimed it was "already there before this PR."
+
+**Mistake:** I stated confidently that the DISTINCT was pre-existing without checking the git history. In reality, the original query had no DISTINCT — I added it in commit `109ab3e` along with the workspaces JOIN. When the user pushed back ("are you SURE"), I checked `git show` on the parent commit and confirmed the original had `select s.id` not `select distinct s.id`.
+
+**Better approach:** When making claims about what code looked like before your changes, always verify against the actual git history (`git show <parent>:<file>`) before asserting. Don't rely on memory of what you wrote — check the diff.
+
+**Lesson:** Never claim "this was already there" about code you modified without verifying against the pre-change version in git. Especially for behavioral changes like DISTINCT, the user needs accurate information to assess risk.
+
+---
+
+## 2026-03-17: Added unnecessary EU credential env vars without checking infra repo
+
+**Context:** Building dynamic S3 region selection for MatchBooster EU enrichment. Needed the S3 functions to support both US and EU buckets.
+
+**Mistake:** I assumed the EU S3 bucket would require separate IAM credentials and added three new env vars (`MATCHBOOSTER_AWS_ACCESS_KEY_ID_EU`, `MATCHBOOSTER_AWS_SECRET_KEY_EU`, `MATCHBOOSTER_BUCKET_EU`) with separate credential-selection logic. In reality, the infra repo (`~/code/ht/infra`) shows that both buckets are accessed by the same IAM user (`cdw-user`) with policies for both buckets, and the plan executor's IAM role has a single policy covering both buckets. Only the bucket name and S3 client region need to change — the credentials are shared.
+
+**Better approach:** Before adding new env vars or credential-selection logic for infrastructure resources (S3 buckets, databases, queues, etc.), check the infra repo (`~/code/ht/infra`) to understand how the resource is provisioned, how access is granted, and whether credentials are shared or separate. Key places to look:
+- `constructs/` for resource definitions and IAM policies
+- `cdk/production/` for per-environment wiring
+- `constructs/stacks/controlplane.ts` for shared IAM users
+
+**Lesson:** Always consult the infra repo when making changes that involve cloud resource access patterns (S3 buckets, credentials, regions). Don't assume separate resources need separate credentials — check how IAM policies are actually configured.
+
+---
+
+## 2026-03-19: Generated verbose SQL INSERT instead of minimal one
+
+**Context:** User provided a CSV row and asked for an INSERT query for their local Postgres DB. Many columns had defaults (`id` via `nextval`, `created_at`/`updated_at` via `now()`, `setup_complete` defaults to `true`, `tags` defaults to `'{}'`) or were nullable with NULL values in the CSV.
+
+**Mistake:** I generated a full INSERT with all 20 columns explicitly listed, including columns whose CSV values matched the default (e.g., `setup_complete = true`, `tags = '{}'`) and nullable columns that were NULL. The user had to ask "what values can I omit?" to get the minimal version.
+
+**Better approach:** When generating SQL INSERTs, proactively omit columns where:
+1. The column has a default and the desired value matches that default (e.g., `id` with `nextval`, timestamps with `now()`, booleans with a default)
+2. The column is nullable and the value is NULL
+3. Present the minimal query first, then mention what was omitted and why
+
+**Lesson:** Default to minimal SQL — only include columns where the value differs from the column's default. Less noise makes the query easier to read, modify, and rerun.
+
+---
+
+## 2026-03-19: Used foreign key values from production CSV that don't exist locally
+
+**Context:** User provided a CSV row exported from a production database and asked for an INSERT query to run against their **local** Postgres DB. The row referenced `workspace_id = 577`, `created_by = 1`, `updated_by = 1`.
+
+**Mistake:** I copied the foreign key values verbatim from the CSV into the INSERT statement without considering that the local database has different data. `workspace_id = 577` doesn't exist in the local `workspaces` table, so the INSERT failed with a FK constraint violation. I even asked "do you need to adjust the foreign keys?" but should have proactively resolved this instead of putting the burden on the user.
+
+**Better approach:** When generating INSERTs for a local DB from production data:
+1. Identify all FK columns in the table schema (the user provided the full schema including FK constraints)
+2. For required FK columns (`workspace_id` is NOT NULL), query the local DB to find a valid value (e.g., `SELECT id FROM workspaces LIMIT 1`) or ask the user which workspace to use
+3. For optional FK columns (`created_by`, `updated_by`), either omit them (they're nullable) or verify the referenced rows exist locally
+4. Never assume production IDs exist in the local DB
+
+**Lesson:** When the target DB differs from the source of the data (e.g., local vs production), proactively validate or substitute foreign key values. Don't just copy IDs and hope they exist.
+
+---
+
+## 2026-03-19: `gh pr edit` fails silently due to GraphQL deprecation warning
+
+**Context:** After creating PR #34059, user asked to make the description more concise. I used `gh pr edit 34059 --body "..."` and `gh pr edit 34059 --body-file /tmp/body.md` — both returned exit code 1 with a GraphQL deprecation warning about "Projects (classic)" but no other error. I assumed it failed and retried multiple times before discovering the body was never updated.
+
+**Mistake:** `gh pr edit` uses the GraphQL API internally. The "Projects (classic)" deprecation warning causes exit code 1, and the edit is silently **not applied**. I wasted 3 round trips trying different variations of the same broken command before switching to the REST API.
+
+**Definitive `gh` commands for PR operations:**
+
+| Operation | Command | Notes |
+|---|---|---|
+| **Create PR** | `gh pr create --title "..." --body "$(cat <<'EOF' ... EOF)"` | Works reliably |
+| **Update PR body** | `gh api repos/OWNER/REPO/pulls/NUM -X PATCH -F body=@file` | REST API — always use this, not `gh pr edit` |
+| **Update PR title** | `gh api repos/OWNER/REPO/pulls/NUM -X PATCH -f title="new title"` | REST API |
+| **View PR** | `gh pr view NUM --json body,title,state` | Works reliably |
+| **Get PR comments** | `gh api repos/OWNER/REPO/pulls/NUM/comments` | REST API |
+| **Get review comments** | `gh api repos/OWNER/REPO/pulls/NUM/reviews` | REST API |
+| **Add reviewers** | `gh pr edit NUM --add-reviewer user1,user2` | May hit same GraphQL bug — use REST if it fails |
+| **Check CI** | `gh pr checks NUM` | Works reliably |
+
+**Key rule:** Never use `gh pr edit --body` or `--body-file`. Always use `gh api ... -X PATCH -F body=@file` for updating PR bodies. Write the body to a temp file first, then pass it with `-F body=@/tmp/file.md`.
+
+**Lesson:** When a `gh` subcommand returns exit code 1 with only a deprecation warning and no visible error, assume the operation silently failed. Fall back to the REST API (`gh api`).
+
+---
+
+## 2026-03-23: Used ARRAY_CONSTRUCT() inside VALUES clause in Snowflake INSERT
+
+**Context:** Generating a Snowflake INSERT statement for a table with ARRAY columns.
+
+**Mistake:** Used `ARRAY_CONSTRUCT()` inside a `VALUES` clause, which Snowflake does not support. Snowflake's `VALUES` clause only accepts scalar literals — constructor functions like `ARRAY_CONSTRUCT()`, `OBJECT_CONSTRUCT()`, and `PARSE_JSON()` are not allowed there.
+
+**Better approach:** Use `INSERT INTO ... SELECT` instead of `INSERT INTO ... VALUES` when any column value requires a constructor function:
+```sql
+-- Wrong: VALUES clause can't use ARRAY_CONSTRUCT
+INSERT INTO my_table (id, arr_col)
+VALUES ('abc', ARRAY_CONSTRUCT('x', 'y'));
+
+-- Correct: SELECT allows constructor functions
+INSERT INTO my_table (id, arr_col)
+SELECT 'abc', ARRAY_CONSTRUCT('x', 'y');
+```
+
+**Lesson:** In Snowflake, always use `INSERT INTO ... SELECT` instead of `VALUES` when constructing arrays, objects, or using any non-scalar expression.
+
+---
+
+## 2026-03-24: Declared a script "not in the repo" without checking branch freshness
+
+**Context:** User ran `pnpm tilt:start` and got `ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL` / command not found. I searched the workspace (grep, `package.json`, no `Tiltfile`) and concluded `tilt:start` is not defined in this monorepo and explained the standard `docker:start` / `all:watch` flow.
+
+**Mistake:** I treated the current working tree as authoritative for "what exists in the repo" without checking whether the user was on latest `master`. They were behind; the script or related setup may exist on `origin/master` while their branch lacked it — so my answer was misleading for their real problem (stale checkout).
+
+**Better approach:**
+1. When diagnosing missing npm/pnpm scripts or new tooling, run `git fetch` + `git rev-parse HEAD` vs `origin/master` (or ask: "Are you on latest master?").
+2. If relevant, diff the file against trunk: `git show origin/master:package.json` (or `git diff origin/master -- package.json`) before asserting something was never added.
+3. Frame conclusions conditionally: "I don't see `tilt:start` on your current tree; if you're not on latest master, pull/rebase and retry."
+
+**Lesson:** "Not in the codebase" means "not in *this* checkout." Stale branches are common. Verify sync with trunk (or state the assumption explicitly) before telling the user a command or script doesn't exist upstream.
+
+---
+
+## User preference: Always offer follow-up options
+
+**Rule:** At the end of every response, prompt the user with 1-2 suggested follow-up actions or questions. Keep them concise and relevant to the current context.

@@ -22,3 +22,5 @@ alias python=python3
 # if [ -f ~/.git-completion.bash ]; then
 #    . ~/.git-completion.bash
 # fi
+
+. "$HOME/.local/share/../bin/env"
