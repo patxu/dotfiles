@@ -1,4 +1,3 @@
-echo "bashrc_common is being sourced, probably by mistake"
 # command line to use vim instead of emacs
 set -o vi
 export EDITOR=vim

@@ -1,4 +1,3 @@
-echo "bashrc is being sourced, probably by mistake"
 # .bashrc
 
 source ~/.bashrc_common
@@ -23,4 +22,5 @@ alias python=python3
 #    . ~/.git-completion.bash
 # fi
 
-. "$HOME/.local/share/../bin/env"
+## dunno what this was for
+# . "$HOME/.local/share/../bin/env"
